@@ -94,12 +94,12 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 	 </div>
      <div class="clearfix"></div>		   
     </div>
-   </div>	
+   </div>
   </div>
    <!-- Ends Header -->
     <!------------ Start Content ---------------->
         <div class="main">
-	        <div class="order_banner" style="margin-bottom:40px">
+	        <div class="reservation_banner" style="margin-bottom:40px">
 				<div class="main_title">Food on sale today!</div>
 				<div class="divider"></div>
 			</div>        	

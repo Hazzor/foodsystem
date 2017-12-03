@@ -1,4 +1,4 @@
- <!--A Design by W3layouts
+<!--A Design by W3layouts
 Author: W3layout
 Author URL: http://w3layouts.com
 License: Creative Commons Attribution 3.0 Unported
@@ -12,6 +12,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 <!-- Custom Theme files -->
 <link href="css/style.css" rel='stylesheet' type='text/css' />
+
 <!-- Custom Theme files -->
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
@@ -64,7 +65,10 @@ License URL: http://creativecommons.org/licenses/by/3.0/
    </script>
   
 <link rel="stylesheet" href="fonts/css/font-awesome.min.css">
+<style type="text/css">
+	.error {color: #FF0000;}
 
+</style>
 
 </head>
 <body>
@@ -82,10 +86,6 @@ License URL: http://creativecommons.org/licenses/by/3.0/
               <input id="mobile_menu" type="checkbox">
 				<ul class="nav">
               <li><a href="index.html">Home</a></li>                  
-                     
-              <li><a href="about.html">View Order</a></li>
-                  
-
             <li><a href="index.html">Logout</a></li>
             
             <div class="clearfix"></div>
@@ -95,14 +95,12 @@ License URL: http://creativecommons.org/licenses/by/3.0/
      <div class="clearfix"></div>		   
     </div>
    </div>	
+  </div>
    <!-- Ends Header -->
-   <style>
-  
-
-	</style>
-      <div class="main">
+    <!------------ Start Content ---------------->
+        <div class="main">
 	        <div class="order_banner" style="margin-bottom:40px">
-				<div class="main_title">View your Order for today!</div>
+				<div class="main_title">Food on sale today!</div>
 				<div class="divider"></div>
 			</div>        	
 	        <div class="container" align="center" >
@@ -116,10 +114,14 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 
 					  		<div class="col-sm-6" align="left">
 							    <h4 class="card-title">Nasi goreng Ali</h4>
-							    <p class="card-text">Quantity : 2 packs</p>
 							    <p class="card-text">Location : KK4</p>
 							    <p class="card-text">Distribution time : 6.30pm - 7.00pm</p>
 							    <p class="card-text">Price : RM 5</p>
+							    <br><br><br>
+							    <div align="right">
+								    <a href="#" class="btn btn-success"><b>Update</b></a>
+								    <a href="#" class="btn btn-danger"><b>Delete</b></a>
+							    </div>
 						    </div>
 
 				    </div>
@@ -135,10 +137,14 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 
 					  		<div class="col-sm-6" align="left">
 							    <h4 class="card-title">Nasi Arab</h4>
-							    <p class="card-text">Quantity : 1 packs</p>
 							    <p class="card-text">Location : KK4</p>
 							    <p class="card-text">Distribution time : 6.30pm - 7.00pm</p>
 							    <p class="card-text">Price : RM 5</p>
+							    <br><br><br>
+							    <div align="right">
+								    <a href="#" class="btn btn-success"><b>Update</b></a>
+								    <a href="#" class="btn btn-danger"><b>Delete</b></a>
+							    </div>
 						    </div>
 
 				    </div>
@@ -147,19 +153,8 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 
 			</div>
 		</div>
- 	<!-- <div class="sas">
-  <div align="center" class="card" style="width: 20rem;">
-  <img class="card-img-top" src="...">
-  <div class="card-block">
-    <h3 class="card-title">Today's Order</h3>
-    <h4 class="card-text">Name:
-    					 <br>Quantity:
-    					 <br>Distribution time:
-    					 <br>Location:
-    					 <br>Total price:
-    </h4>
- 	</div>
-  </div>
- --></body>
+
+</body>
 </html>
+
 
