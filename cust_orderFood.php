@@ -66,6 +66,18 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <link rel="stylesheet" href="fonts/css/font-awesome.min.css">
 <style type="text/css">
 	.error {color: #FF0000;}
+
+	#orderfood_banner{
+
+	background: url("images/order.jpg")no-repeat center top;
+	background-size: 100% 100%;
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+	background-position: center;
+	padding: 2em 0 3em;
+}
 </style>
 
 </head>
@@ -194,7 +206,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                             </tr>
                             <tr>
                             	<th>Quantity:</th>
-                            	<td width="200"><input type="number" name="quantity"></td>
+                            	<td><input type="number" name="quantity"></td>
                             </tr>
                             <tr>
                             	<th>Time Distribute</th>

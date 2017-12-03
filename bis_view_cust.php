@@ -1,4 +1,4 @@
- <!--A Design by W3layouts
+<!--A Design by W3layouts
 Author: W3layout
 Author URL: http://w3layouts.com
 License: Creative Commons Attribution 3.0 Unported
@@ -8,7 +8,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <html>
 <head>
 <title>UMP Dinner Ordering</title>
-<link href="css/bootstrap.min.css" rel='stylesheet' type='text/css' />
+<link href="css/bootstrap.css" rel='stylesheet' type='text/css' />
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 <!-- Custom Theme files -->
 <link href="css/style.css" rel='stylesheet' type='text/css' />
@@ -64,7 +64,31 @@ License URL: http://creativecommons.org/licenses/by/3.0/
    </script>
   
 <link rel="stylesheet" href="fonts/css/font-awesome.min.css">
+<style type="text/css">
+	.error {color: #FF0000;}
+	/** View Customer Part **/
+.view_cust table, th, td {
+    border: 1.5px solid black;
+    border-collapse: collapse;
+    padding: 1.2em;
+    margin: 2em 0;
+    text-align: justify;
+}
 
+.view_cust th, td{
+	padding: 10px;
+}
+
+</style>
+
+<script type="text/javascript">
+function change() // no ';' here
+{
+    var elem = document.getElementById("status_button");
+    if (elem.value=="Close Curtain") elem.value = "Open Curtain";
+    else elem.value = "Close Curtain";
+}
+</script>
 
 </head>
 <body>
@@ -95,71 +119,54 @@ License URL: http://creativecommons.org/licenses/by/3.0/
      <div class="clearfix"></div>		   
     </div>
    </div>	
-   <!-- Ends Header -->
-   <style>
-  
-
-	</style>
-      <div class="main">
-	        <div class="order_banner" style="margin-bottom:40px">
-				<div class="main_title">View your Order for today!</div>
-				<div class="divider"></div>
-			</div>        	
-	        <div class="container" align="center" >
-
-				<div class="card card-padding">
-					  <div class="card-block">
-					  	<div class="row">
-					  		<div class="col-sm-6">
-					  			<img src="images/arabfood1.jpg" width="100%">
-					 	 	</div>
-
-					  		<div class="col-sm-6" align="left">
-							    <h4 class="card-title">Nasi goreng Ali</h4>
-							    <p class="card-text">Quantity : 2 packs</p>
-							    <p class="card-text">Location : KK4</p>
-							    <p class="card-text">Distribution time : 6.30pm - 7.00pm</p>
-							    <p class="card-text">Price : RM 5</p>
-						    </div>
-
-				    </div>
-				  </div>
-				</div>
-
-				<div class="card card-padding">
-					  <div class="card-block">
-					  	<div class="row">
-					  		<div class="col-sm-6">
-					  			<img src="images/arabfood2.jpg" width="100%">
-					 	 	</div>
-
-					  		<div class="col-sm-6" align="left">
-							    <h4 class="card-title">Nasi Arab</h4>
-							    <p class="card-text">Quantity : 1 packs</p>
-							    <p class="card-text">Location : KK4</p>
-							    <p class="card-text">Distribution time : 6.30pm - 7.00pm</p>
-							    <p class="card-text">Price : RM 5</p>
-						    </div>
-
-				    </div>
-				  </div>
-				</div>
-
-			</div>
-		</div>
- 	<!-- <div class="sas">
-  <div align="center" class="card" style="width: 20rem;">
-  <img class="card-img-top" src="...">
-  <div class="card-block">
-    <h3 class="card-title">Today's Order</h3>
-    <h4 class="card-text">Name:
-    					 <br>Quantity:
-    					 <br>Distribution time:
-    					 <br>Location:
-    					 <br>Total price:
-    </h4>
- 	</div>
   </div>
- --></body>
-</html>
+   <!-- Ends Header -->
+    <!------------ Start Content ---------------->
+<?php
+//set counter variable 
+$counter = 1; 
+while($row = mysqli_fetch_array($_POST)) 
+  { 
+  echo "<tr>"; 
+  echo "<td>" . $counter . "</td>"; 
+  echo "<td>" . $row['name'] . "</td>"; 
+  echo "<td>" . $row['speech'] . "</td>"; 
+  echo "</tr>"; 
+  $counter++; //increment counter by 1 on every pass 
+  } 
+echo "</table>";
+?>
+        <div class="main">
+	        <div class="order_banner">
+				<div class="main_title">Customer List</div>
+				<div class="divider"></div>
+			</div>
+			<div class="reservation_top">
+            	<div class="view_cust" align="center">
+					<h2>Today's Customer List</h2>	
+					<h3>KK4</h3>
+
+					<table>
+						<tr>
+							<th>Bil</th>
+							<th>Name</th>
+							<th>Set</th>
+							<th>Quantity</th>
+							<th>Total</th>
+							<th>Status</th>
+						</tr>
+						<tr>
+							echo "<td>" . $counter . "</td>"; 
+						    echo "<td>" . $row['name'] . "</td>"; 
+						    echo "<td>" . $row['set'] . "</td>"; 
+						    echo "<td>" . $row['quantity'] . "</td>"; 
+						    echo "<td>" . $row['total'] . "</td>";
+						    echo "<td>" . $row['status']
+
+							
+						</tr>
+
+
+					</table>
+
 
