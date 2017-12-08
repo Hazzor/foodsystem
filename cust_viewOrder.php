@@ -100,11 +100,34 @@ License URL: http://creativecommons.org/licenses/by/3.0/
     <!------------ Start Content ---------------->
         <div class="main">
 	        <div class="order_banner" style="margin-bottom:40px">
-				<div class="main_title">Food on sale today!</div>
+				<div class="main_title">Today's Order</div>
 				<div class="divider"></div>
 			</div>        	
 	        <div class="container" align="center" >
-
+	        	<?php
+	        	
+			    include("dbase.php");
+			    $today = date("d-m-Y", time());
+				
+				$query ="SELECT f_name, f_photo, f_price, b_location, b_timeStart, b_timeEnd, b_name, quantity, tarikh FROM food_info, business_info, business_food_mapping, customer_food_mapping, customer_info WHERE  customer_info.customer_id='14' AND customer_food_mapping.tarikh = '$today' AND customer_info.customer_id = customer_food_mapping.customer_fk AND customer_food_mapping.food_fk = food_info.food_id AND food_info.food_id = business_food_mapping.food_fk AND business_info.business_id ";
+				
+				$result = mysqli_query($conn,$query);
+				if (mysqli_num_rows($result) > 0){ 
+				// output data of each row
+				while($row = mysqli_fetch_assoc($result)){
+				$tarikh = $row ["tarikh"];
+				$quantity = $row ["quantity"];
+				$b_name = $row ["b_name"];
+				$f_name = $row["f_name"];
+				$f_photo = $row["f_photo"];
+			 	$f_price = $row["f_price"];
+			  	$b_location = $row["b_location"];
+			   	$b_timeStart = $row["b_timeStart"];
+			    $b_timeEnd = $row["b_timeEnd"]; 
+			    $total = $quantity*$f_price;
+			    $masa = $b_timeStart; 
+				date('h:i a ', strtotime($masa));
+			    ?>
 				<div class="card card-padding">
 					  <div class="card-block">
 					  	<div class="row">
@@ -113,44 +136,25 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 					 	 	</div>
 
 					  		<div class="col-sm-6" align="left">
-							    <h4 class="card-title">Nasi goreng Ali</h4>
-							    <p class="card-text">Location : KK4</p>
-							    <p class="card-text">Distribution time : 6.30pm - 7.00pm</p>
-							    <p class="card-text">Price : RM 5</p>
-							    <br><br><br>
-							    <div align="right">
-								    <a href="#" class="btn btn-success"><b>Update</b></a>
-								    <a href="#" class="btn btn-danger"><b>Delete</b></a>
-							    </div>
+							    <h4 class="card-title"><?php echo $f_name; ?></h4>
+							    <br>
+							    <p class="card-text">Seller Name : <?php echo $b_name; ?></p>
+							    <p class="card-text">Location : <?php echo $b_location; ?> </p>
+							    <p class="card-text">Distribution date : <?php echo $tarikh; ?></p>
+							    <p class="card-text">Distribution time : <?php echo date('g:i a ', strtotime($b_timeStart)); ?> - <?php echo date('g:i a ', strtotime($b_timeEnd)); ?></p>
+								<p class="card-text">Quantity : <?php echo $quantity; ?></p>
+							    <p class="card-text">Price : <?php echo "RM ".number_format((float)$total, 2, '.', '');; ?></p>
 						    </div>
 
 				    </div>
 				  </div>
 				</div>
-
-				<div class="card card-padding">
-					  <div class="card-block">
-					  	<div class="row">
-					  		<div class="col-sm-6">
-					  			<img src="images/arabfood2.jpg" width="100%">
-					 	 	</div>
-
-					  		<div class="col-sm-6" align="left">
-							    <h4 class="card-title">Nasi Arab</h4>
-							    <p class="card-text">Location : KK4</p>
-							    <p class="card-text">Distribution time : 6.30pm - 7.00pm</p>
-							    <p class="card-text">Price : RM 5</p>
-							    <br><br><br>
-							    <div align="right">
-								    <a href="#" class="btn btn-success"><b>Update</b></a>
-								    <a href="#" class="btn btn-danger"><b>Delete</b></a>
-							    </div>
-						    </div>
-
-				    </div>
-				  </div>
-				</div>
-
+				<?php
+				}
+				}else{
+					echo "No results";
+				}
+				?>
 			</div>
 		</div>
 

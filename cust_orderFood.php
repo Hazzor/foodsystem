@@ -220,7 +220,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                             	<th>Price</th>
                             	<td>RM6</td>
                             </tr>
-
+                            <tr>
                             	<th>Total Price</th>
                             	<td></td>
                             </tr>

@@ -1,9 +1,5 @@
-<!--A Design by W3layouts
-Author: W3layout
-Author URL: http://w3layouts.com
-License: Creative Commons Attribution 3.0 Unported
-License URL: http://creativecommons.org/licenses/by/3.0/
--->
+  
+
 <!DOCTYPE HTML>
 <html>
 <head>
@@ -98,13 +94,29 @@ License URL: http://creativecommons.org/licenses/by/3.0/
   </div>
    <!-- Ends Header -->
     <!------------ Start Content ---------------->
+    
         <div class="main">
 	        <div class="reservation_banner" style="margin-bottom:40px">
 				<div class="main_title">Food on sale today!</div>
 				<div class="divider"></div>
 			</div>        	
 	        <div class="container" align="center" >
+			<?php
+			    include("dbase.php");
 
+				$query ="SELECT food_id, f_name, f_photo, f_price, b_location, b_timeStart, b_timeEnd FROM food_info, business_info WHERE food_id IN (SELECT food_fk FROM business_food_mapping WHERE business_fk IN (SELECT business_id FROM business_info WHERE b_name='just eat')) "; 
+				$result = mysqli_query($conn,$query);
+				if (mysqli_num_rows($result) > 0){ 
+				// output data of each row
+				while($row = mysqli_fetch_assoc($result)){
+				$id = $row["food_id"];
+				$f_name = $row["f_name"];
+				$f_photo = $row["f_photo"];
+			 	$f_price = $row["f_price"];
+			  	$b_location = $row["b_location"];
+			   	$b_timeStart = $row["b_timeStart"];
+			    $b_timeEnd = $row["b_timeEnd"]; 
+			    ?>
 				<div class="card card-padding">
 					  <div class="card-block">
 					  	<div class="row">
@@ -113,22 +125,28 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 					 	 	</div>
 
 					  		<div class="col-sm-6" align="left">
-							    <h4 class="card-title">Nasi goreng Ali</h4>
-							    <p class="card-text">Location : KK4</p>
-							    <p class="card-text">Distribution time : 6.30pm - 7.00pm</p>
-							    <p class="card-text">Price : RM 5</p>
+							    <h4 class="card-title"> <?php echo $f_name; ?> </h4>
+							    <p class="card-text">Location : <?php echo $b_location; ?> </p>
+							    <p class="card-text">Distribution time : <?php echo date('g:i a ', strtotime($b_timeStart)); ?> - <?php echo date('g:i a ', strtotime($b_timeEnd)); ?> </p>
+							    <p class="card-text">Price : <?php echo "RM ".$f_price; ?> </p>
 							    <br><br><br>
 							    <div align="right">
 								    <a href="#" class="btn btn-success"><b>Update</b></a>
-								    <a href="#" class="btn btn-danger"><b>Delete</b></a>
+								    <a href="bis_delete_foodonsale.php?id=<?php echo $id; ?>" class="btn btn-danger nav">Delete</a>
 							    </div>
 						    </div>
 
 				    </div>
 				  </div>
 				</div>
+				<?php
+				}
+				}else{
+					echo "No results";
+				}
+				?>
 
-				<div class="card card-padding">
+				<!-- <div class="card card-padding">
 					  <div class="card-block">
 					  	<div class="row">
 					  		<div class="col-sm-6">
@@ -149,12 +167,10 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 
 				    </div>
 				  </div>
-				</div>
+				</div> -->
 
 			</div>
 		</div>
 
 </body>
 </html>
-
-

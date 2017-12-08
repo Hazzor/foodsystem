@@ -98,8 +98,30 @@
 			margin-top:0px;
 		}
 
+		.hide{
+			display:none;
+			}
+
+		.show{
+			display:block;
+		}
+
+		#pass{
+			width:100%;
+		}
 		
 	</style>
+    
+    <?php
+/*
+  Filename: login.php
+  Purpose: Login interface
+*/
+ //Start Session
+ session_start();
+
+?>
+    
 </head>
 <body>
 <div class="container">
@@ -117,33 +139,99 @@
 					<button type="button" class="btn btn-default btn-transparent" onclick="location.href='sign-up.html';">Register Now</button>
 				</div>
 				<div class="overlay"></div>
-			</div>
+            </div>
+            
+            <?php
+            // to display error message if username and password is invalid
+                if (isset($_SESSION['ERRMSG_ARR']))
+                {
+                    echo "<h1 style='color:red'>Error found: ";
+                    for ($i=0; $i<count($_SESSION['ERRMSG_ARR']); $i++)
+                    {
+                        echo $_SESSION['ERRMSG_ARR'][$i]."!";
+                    }
+                    echo "</h1>";
+                    unset($_SESSION['ERRMSG_ARR']);
+                }  
+            ?>
+            
 			<div class="side side-right">
-				<div class="login-form">
-					<h1>Login </h1>
-					<form method="post" action="fill-in.php">
-                                 <div class="form-group">
-    <label for="email">Matric Number:</label>
-    <input type="email" class="form-control" id="email">
-  </div>
-  <div class="form-group">
-    <label for="pwd">Password:</label>
-    <input type="email" class="form-control" id="email">
-  </div>
-  <select>
-  <option value="seller">Seller</option>
-  <option value="buyer">Buyer</option>
-  
-</select>
-  <button type="submit" class="btn btn-block btn-lg btn-primary	">Login</button>
-  
-  <br><br>
-  <p>Don't have an account yet?  <a href="sign-up.html">Register Now</a></p> 
-							</form>
-							
-  
-  
+				<div class="login-form"> 
+					<div align="center">
+						<h1>Login </h1>
+						<button onclick="customerFunction()" class="btn btn-primary btn2 btn-normal btn-inline ">Customer</button>
+						<button onclick="sellerFunction()" class="btn btn-primary btn2 btn-normal btn-inline ">Seller</button>
+					</div>
 
+					<script>
+						function customerFunction() 
+						{
+
+  							 if (document.getElementById('seller2').style.display == 'block') 
+							{
+							  document.getElementById('seller2').style.display = 'none';
+		                  	  document.getElementById('customer1').style.display = 'block';
+		                  	}
+		                  	else
+		                  		 document.getElementById('customer1').style.display = 'block';
+  							 
+						}
+
+						
+
+						function sellerFunction() 
+						{
+							if (document.getElementById('customer1').style.display == 'block') 
+							{
+								document.getElementById('customer1').style.display = 'none';
+		                  	  document.getElementById('seller2').style.display = 'block';
+		                  	}
+		                  	else
+		                  		 document.getElementById('seller2').style.display = 'block';
+  							 
+						}
+
+
+					</script>
+
+					<!--Customer -->
+					<div id="customer1" style="display:none;">
+						<form method="post" action="cust_sessionHandler.php">
+	                    <div class="form-group">
+						    <label for="c_matricNum">Customer Matric Number:</label>
+						    <input type="text" class="form-control" name="c_matricNum">
+						  </div>
+						  <div class="form-group">
+						    <label for="c_password">Password:</label>
+						    <input type="password" id="pass" class="form-control" name="c_password">
+						  </div>
+
+						  <button type="submit" class="btn btn-block btn-lg btn-primary	">Login</button>
+							  <br><br>
+							  <p>Don't have an account yet?  <a href="sign-up.html">Register Now</a></p> 
+						</form>
+					</div>
+
+
+					<!-- Seller -->
+					<div id="seller2" style="display:none;">
+						<form method="post" action="bis_sessionHandler.php">
+	                    <div class="form-group">
+						    <label for="b_matricNum">Seller Matric Number:</label>
+						    <input type="text" class="form-control" name="b_matricID">
+						  </div>
+						  <div class="form-group">
+						    <label for="b_password">Password:</label>
+						    <input type="password" id="pass" class="form-control" name="b_password">
+						  </div>
+
+						  <button type="submit" class="btn btn-block btn-lg btn-primary	">Login</button>
+							  <br><br>
+							  <p>Don't have an account yet?  <a href="sign-up.html">Register Now</a></p> 
+						</form>
+					</div>
+
+	
 				</div>
 				<div class="overlay"></div>
 			</div>

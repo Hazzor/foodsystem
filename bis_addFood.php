@@ -4,6 +4,25 @@ Author URL: http://w3layouts.com
 License: Creative Commons Attribution 3.0 Unported
 License URL: http://creativecommons.org/licenses/by/3.0/
 -->
+<?php
+
+  include('dbase.php');
+
+  $foodname=$_POST['pname'];
+  $price=$_POST['price'];
+
+$fileinfo=PATHINFO($_FILES["photo"]["name"]);
+
+  if(empty($fileinfo['filename'])){
+    $location="";
+  }
+  else{
+  $newFilename=$fileinfo['filename'] ."_". time() . "." . $fileinfo['extension'];
+  move_uploaded_file($_FILES["photo"]["tmp_name"],"upload/" . $newFilename);
+  $location="upload/" . $newFilename;
+  }
+
+?>
 <!DOCTYPE HTML>
 <html>
 <head>
@@ -23,7 +42,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <script src="js/modernizr.custom.js" type="text/javascript"></script>
 <script src="js/jquery.openCarousel.js" type="text/javascript"></script>
 <script src="js/fwslider.js" type="text/javascript"></script>
-<script src="js/dropzone.js"></script>
+<!-- <script src="js/dropzone.js"></script> -->
 <script type="text/javascript" charset="utf-8">
 	$(document).ready(function() {
 	    $('#slider').fwslider({
@@ -90,7 +109,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
               <input id="mobile_menu" type="checkbox">
 				<ul class="nav">
               <li><a href="index.html">Home</a></li>                  
-            <li><a href="index.html">Logout</a></li>
+            <li><a href="logout.php">Logout</a></li>
             
             <div class="clearfix"></div>
           </ul>
@@ -104,149 +123,37 @@ License URL: http://creativecommons.org/licenses/by/3.0/
     <!------------ Start Content ---------------->
         <div class="main">
 	        <div class="reservation_banner" style="margin-bottom:40px">
-				<div class="main_title">Add food</div>
-				<div class="divider"></div>
-			</div>
+    				<div class="main_title">Sell food</div>
+    				<div class="divider"></div>
+  			 </div>
 
 	        <div class="container" align="center">
-<form method="post" action="/file-upload" >
-	            <div class="row">
-	            	
-	            	<div class="col-md-5">
+            <div class="sign-up-form">
+            <form method="post" action="bis_addFood.php" >
+  	               <div class="col-md-8" align="center">
+<!--       	              <h3>Add food form</h3> -->
+        	            		<!-- <div class="contact-form"> -->
+                          
+                                  <label class="control-label">Add Photo:</label><br>
+                              
+                                  <input type="file" name="photo">
+                             
 
+      	            			<input type="text"  name="foodname" placeholder="Food name">
+      	            			RM<input type="number" name="price" placeholder="Quantity">
 
+      	            			<br>
+      							     </div>
 
-      <div style="max-width: 650px; margin: auto;">
-        <h1 class="page-header">Upload food image</h1>
-        <p class="lead">Select a PNG or JPEG image, having maximum size <span id="max-size"></span> KB.</p>
+      							<input type="submit"  value="Sell Food">
 
-        <form id="upload-image-form" action="" method="post" enctype="multipart/form-data">
-          <div id="image-preview-div" style="display: none">
-            <label for="exampleInputFile">Selected image:</label>
-            <br>
-            <img id="preview-img" src="noimage">
-          </div>
-          <div class="form-group">
-            <input type="file" name="file" id="file" required>
-          </div>
-          <button class="btn  btn-primary" id="upload-button" type="submit" disabled>Upload image</button>
-        </form>
-
-        <br>
-        <div class="alert alert-info" id="loading" style="display: none;" role="alert">
-          Uploading image...
-          <div class="progress">
-            <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100" style="width: 100%">
+      							<div class="clearfix"></div>
+      								
+      						</div>
+            </form>
             </div>
-          </div>
-        </div>
-        <div id="message"></div>
- 
-<script type="text/javascript">
-	function noPreview() {
-  $('#image-preview-div').css("display", "none");
-  $('#preview-img').attr('src', 'noimage');
-  $('upload-button').attr('disabled', '');
-}
-
-function selectImage(e) {
-  $('#file').css("color", "green");
-  $('#image-preview-div').css("display", "block");
-  $('#preview-img').attr('src', e.target.result);
-  $('#preview-img').css('max-width', '550px');
-}
-
-$(document).ready(function (e) {
-
-  var maxsize = 500 * 1024; // 500 KB
-
-  $('#max-size').html((maxsize/1024).toFixed(2));
-
-  $('#upload-image-form').on('submit', function(e) {
-
-    e.preventDefault();
-
-    $('#message').empty();
-    $('#loading').show();
-
-    $.ajax({
-      url: "upload-image.php",
-      type: "POST",
-      data: new FormData(this),
-      contentType: false,
-      cache: false,
-      processData: false,
-      success: function(data)
-      {
-        $('#loading').hide();
-        $('#message').html(data);
-      }
-    });
-
-  });
-
-  $('#file').change(function() {
-
-    $('#message').empty();
-
-    var file = this.files[0];
-    var match = ["image/jpeg", "image/png", "image/jpg"];
-
-    if ( !( (file.type == match[0]) || (file.type == match[1]) || (file.type == match[2]) ) )
-    {
-      noPreview();
-
-      $('#message').html('<div class="alert alert-warning" role="alert">Unvalid image format. Allowed formats: JPG, JPEG, PNG.</div>');
-
-      return false;
-    }
-
-    if ( file.size > maxsize )
-    {
-      noPreview();
-
-      $('#message').html('<div class=\"alert alert-danger\" role=\"alert\">The size of image you are attempting to upload is ' + (file.size/1024).toFixed(2) + ' KB, maximum size allowed is ' + (maxsize/1024).toFixed(2) + ' KB</div>');
-
-      return false;
-    }
-
-    $('#upload-button').removeAttr("disabled");
-
-    var reader = new FileReader();
-    reader.onload = selectImage;
-    reader.readAsDataURL(this.files[0]);
-
-  });
-
-});
-</script>
-
-    </div>
-	            	</div>
-
-	            	<div class="col-md-7 contact_right">
-	            		<h3>Add food form</h3>
-	            		<div class="contact-form">
-								
-	            			<input type="text" name="foodname" placeholder="Food name">
-
-	            			<input type="number" name="quantity" placeholder="Quantity">
-	            			<br>
-							
-							<input type="submit" value="Send">
-
-							<div class="clearfix"></div>
-								
-						</div>
-	            	</div>
-
-	            </div>
-</form>
-			</div>
-			
-		</div>
-
-
+			   </div>
+		  </div>
 </body>
 </html>
 

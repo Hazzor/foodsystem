@@ -68,29 +68,27 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 	.error {color: #FF0000;}
 	/** View Customer Part **/
 .view_cust table, th, td {
-    border: 1.5px solid black;
+    border: 0.1px solid black;
     border-collapse: collapse;
     padding: 1.2em;
     margin: 2em 0;
     text-align: justify;
+    width: 70%;
 }
 
 .view_cust th, td{
 	padding: 10px;
 }
 
+.view_cust th{
+    background-color: #25C1C0;
+    color: black;
+}
+
 </style>
 
-<script type="text/javascript">
-function change() // no ';' here
-{
-    var elem = document.getElementById("status_button");
-    if (elem.value=="Close Curtain") elem.value = "Open Curtain";
-    else elem.value = "Close Curtain";
-}
-</script>
-
 </head>
+
 <body>
 
  	    <div class="header_bottom">
@@ -121,21 +119,17 @@ function change() // no ';' here
    </div>	
   </div>
    <!-- Ends Header -->
+   <script>
+		document.getElementById("status_update").addEventListener("click", myFunction);
+
+		function myFunction() {
+				 document.getElementById("status_update").innerHTML = "Paid";
+				 document.getElementById("status_update").style.color = "green";
+		}
+	</script>
+
     <!------------ Start Content ---------------->
-<?php
-//set counter variable 
-$counter = 1; 
-while($row = mysqli_fetch_array($_POST)) 
-  { 
-  echo "<tr>"; 
-  echo "<td>" . $counter . "</td>"; 
-  echo "<td>" . $row['name'] . "</td>"; 
-  echo "<td>" . $row['speech'] . "</td>"; 
-  echo "</tr>"; 
-  $counter++; //increment counter by 1 on every pass 
-  } 
-echo "</table>";
-?>
+
         <div class="main">
 	        <div class="order_banner">
 				<div class="main_title">Customer List</div>
@@ -156,17 +150,42 @@ echo "</table>";
 							<th>Status</th>
 						</tr>
 						<tr>
-							echo "<td>" . $counter . "</td>"; 
-						    echo "<td>" . $row['name'] . "</td>"; 
-						    echo "<td>" . $row['set'] . "</td>"; 
-						    echo "<td>" . $row['quantity'] . "</td>"; 
-						    echo "<td>" . $row['total'] . "</td>";
-						    echo "<td>" . $row['status']
-
+							<?php
+							//set counter variable 
+							$counter = 1; 
+							while($row = mysqli_fetch_array($_POST)) 
+							  { 
+									echo "<td>" . $counter . "</td>"; 
+								    echo "<td>" . $row['name'] . "</td>"; 
+								    echo "<td>" . $row['set'] . "</td>"; 
+								    echo "<td>" . $row['quantity'] . "</td>"; 
+								    echo "<td>" . $row['total'] . "</td>";
+						   			echo "<td><button id=status_update>" . Unpaid . "</button></td>";
+						 
 							
+							$counter++; //increment counter by 1 on every pass 
+							  } 
+							echo "</table>";
+							?>	
 						</tr>
 
 
 					</table>
 
 
+<!-- Example code
+	<?php
+//set counter variable 
+$counter = 1; 
+while($row = mysqli_fetch_array($_POST)) 
+  { 
+  echo "<tr>"; 
+  echo "<td>" . $counter . "</td>"; 
+  echo "<td>" . $row['name'] . "</td>"; 
+  echo "<td>" . $row['speech'] . "</td>"; 
+  echo "</tr>"; 
+  $counter++; //increment counter by 1 on every pass 
+  } 
+echo "</table>";
+?>
+-->

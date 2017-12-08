@@ -134,6 +134,9 @@ text-decoration: none;
 	-o-box-shadow: 0px 1px 5px rgba(0, 0, 0, 0.47);
 	box-shadow: 0px 1px 5px rgba(0, 0, 0, 0.47);
 }
+
+
+}
 .search_box {
 	background:#FFF;
 	border:1px solid #F0F0F0;
@@ -195,7 +198,7 @@ text-decoration: none;
     font-size: 1em;
     color: #000000;
 }
-.sign-up-form input[type="text"], input[type="password"], input[type="tel"]  {
+.sign-up-form input[type="text"], input[type="password"], input[type="tel"], input[type="number"]  {
 	display: block;
 	width:60%;
 	padding: 10px;
