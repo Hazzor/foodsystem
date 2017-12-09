@@ -115,7 +115,6 @@ echo "<h3><center>Welcome ".$_SESSION['SESS_NAME']." , Login Successfully </cent
 <div class="container" align="center">
         <button class="btn btn-primary btn2 btn-normal btn-inline"> <a href="bis_home.php"> <h1> Homepage </h1></a> </button>
         <p> <br> </p>
-        <button class="btn btn-primary btn2 btn-normal btn-inline"> <a href="bis_update_foodonsale.php"> <h1> Update Food </h1></a> </button>
         <p> <br> </p>
          <button class="btn btn-primary btn2 btn-normal btn-inline"> <a href="logout.php"><h1>Log Out </h1></a> </button>
          <p> <br> </p>

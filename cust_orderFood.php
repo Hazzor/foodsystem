@@ -88,6 +88,7 @@
    		padding-top: 45px;
    		padding-left: 250px;
    		position: absolute;
+   		
    	}
    	
 </style>
@@ -144,7 +145,8 @@
 			     $id = $_GET['id'];
 			     
 
-				$query ="SELECT food_id, f_name, f_photo, f_price, b_location, b_timeStart, b_timeEnd FROM food_info, business_info WHERE 	food_id IN (SELECT food_fk FROM business_food_mapping WHERE business_fk IN (SELECT business_id FROM business_info WHERE business_id = $id ))  "; 
+				// $query ="SELECT food_id, f_name, f_photo, f_price, b_location, b_timeStart, b_timeEnd FROM food_info, business_info WHERE food_id IN (SELECT food_fk FROM business_food_mapping WHERE business_fk IN (SELECT business_id FROM business_info WHERE business_id = $id )) "; 
+			     $query ="SELECT food_id, f_name, f_photo, f_price, b_location, b_timeStart, b_timeEnd FROM food_info, business_info, business_food_mapping WHERE  food_info.food_id = business_food_mapping.food_fk AND business_info.business_id=business_food_mapping.business_fk AND business_info.business_id='$id'";
 				$result = mysqli_query($conn,$query);
 				if (mysqli_num_rows($result) > 0){ 
 				// output data of each row

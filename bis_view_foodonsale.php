@@ -108,6 +108,7 @@
 
           include("authenticator.php");
           echo "<h3>Welcome, Seller ".$_SESSION['SESS_NAME']." </h3>";
+          $business_id = $_SESSION['SESS_MEMBER_ID'];
           ?>
         </div>	
 			<div class="navigation">	
@@ -140,7 +141,11 @@
 			<?php
 			    include("dbase.php");
 
-				$query ="SELECT food_id, f_name, f_photo, f_price, b_location, b_timeStart, b_timeEnd FROM food_info, business_info WHERE food_id IN (SELECT food_fk FROM business_food_mapping WHERE business_fk IN (SELECT business_id FROM business_info WHERE b_name='just eat')) "; 
+				// $query ="SELECT food_id, f_name, f_photo, f_price, b_location, b_timeStart, b_timeEnd FROM food_info, business_info WHERE food_id IN (SELECT food_fk FROM business_food_mapping WHERE business_fk IN (SELECT business_id FROM business_info WHERE business_id ='1')) ";
+
+				// $query ="SELECT food_id, f_name, f_photo, f_price, b_location, b_timeStart, b_timeEnd FROM food_info, business_info WHERE business_id IN  (SELECT business_fk FROM business_food_mapping WHERE food_fk IN (SELECT food_id FROM food_info WHERE business_id='1'))";
+				$query ="SELECT food_id, f_name, f_photo, f_price, b_location, b_timeStart, b_timeEnd FROM food_info, business_info, business_food_mapping WHERE  food_info.food_id = business_food_mapping.food_fk AND business_info.business_id=business_food_mapping.business_fk AND business_info.business_id='$business_id'"; 
+
 				$result = mysqli_query($conn,$query);
 				if (mysqli_num_rows($result) > 0){ 
 				// output data of each row

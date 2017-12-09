@@ -54,8 +54,8 @@ if (isset($result))
     {
         //Login Successful
         session_regenerate_id();
-        $member = mysqli_fetch_assoc ($result);
-        $_SESSION ['SESS_MEMBER_ID'] = $member['buisness_id'];
+        $member = mysqli_fetch_assoc($result);
+        $_SESSION ['SESS_MEMBER_ID'] = $member['business_id'];
         $_SESSION ['SESS_NAME'] = $member['b_name'];
         $_SESSION ['STATUS'] = true;
         session_write_close();

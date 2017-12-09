@@ -138,7 +138,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 			    include("dbase.php");
 			    $today = date("d-m-Y", time());
 				
-				$query ="SELECT f_name, f_photo, f_price, b_location, b_timeStart, b_timeEnd, b_name, quantity, tarikh FROM food_info, business_info, business_food_mapping, customer_food_mapping, customer_info WHERE  customer_info.customer_id='$cust_id' AND customer_food_mapping.tarikh = '$today' AND customer_info.customer_id = customer_food_mapping.customer_fk AND customer_food_mapping.food_fk = food_info.food_id AND food_info.food_id = business_food_mapping.food_fk AND business_info.business_id ";
+				$query ="SELECT f_name, f_photo, f_price, b_location, b_timeStart, b_timeEnd, b_name, quantity, tarikh, business_fk FROM food_info, business_info, business_food_mapping, customer_food_mapping, customer_info WHERE  customer_info.customer_id='$cust_id' AND customer_food_mapping.tarikh = '$today' AND customer_info.customer_id = customer_food_mapping.customer_fk AND customer_food_mapping.food_fk = food_info.food_id AND food_info.food_id = business_food_mapping.food_fk AND business_info.business_id=business_food_mapping.business_fk";
 				
 				$result = mysqli_query($conn,$query);
 				if (mysqli_num_rows($result) > 0){ 
@@ -156,6 +156,8 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 			    $total = $quantity*$f_price;
 			    $masa = $b_timeStart; 
 				date('h:i a ', strtotime($masa));
+
+				
 			    ?>
 				<div class="card card-padding">
 					  <div class="card-block">

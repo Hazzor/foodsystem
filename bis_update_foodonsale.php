@@ -83,13 +83,26 @@
 </style>
 
 </head>
-<body>
+<body >
 
       <div class="header_bottom">
         <div class="container">       
         <div class="logo">
           <h1><a href="bis_home.php">UMP DINNER<span>Ordering</span></a></h1>
-        </div>        
+        </div>
+        <div id="user"> 
+        <?php
+          /*
+           Filename: login-successful.php
+           Purpose: To display protected web page if user is valid.
+           Note: If you enter directly to this page, you will be checked by the authenticator, and then redirect to login-failed.html.
+          */
+
+          include("authenticator.php");
+          echo "<h3>Welcome, Seller ".$_SESSION['SESS_NAME']." </h3>";
+          
+          ?>
+        </div>      
       <div class="navigation">  
       <div>
               <label class="mobile_menu" for="mobile_menu">
@@ -108,9 +121,69 @@
     </div>
    </div> 
 
+           <div class="main">
+          <div class="reservation_banner" style="margin-bottom:40px">
+            <div class="main_title">Update food</div>
+            <div class="divider"></div>
+         </div>
+
+          <div class="container">
+            <div class="sign-up-form">
+            <form method="POST" action="bis_updateFoodscript.php" enctype="multipart/form-data">
+              <div class="row" align="center">
+                <div class="col-md-2"></div>
+              <div class="col-md-3">
+                <label class="control-label"><b>Update food image here:</b></label><br>
+                                  <input type="file" id="photo1" name="photo" onchange="loadFile(event)"  accept="image/*">
+                                  <input type="hidden" name="id" value="<?php echo $id; ?>">
+                                  <br><br>
+                            <img src="<?php echo $f_photo; ?>" id="output" width="300px"/>
+                              <script>
+
+                                function LoadValue() {
+                                  document.getElementById("photo1").value = <?php echo realpath($f_photo); ?>;
+                                  
+
+                                }
+                                window.onload = LoadValue;
+
+
+                                var loadFile = function(event) {
+                                  var output = document.getElementById('output');
+                                    output.src = URL.createObjectURL(event.target.files[0]);
+
+                                };
+                              </script>
+              </div>
+
+                   <div class="col-md-7" align="center">
+                                  
+  <div class="form-group" >
+                           <label for="foodname"><b>Food Name :</b></label>
+                          <input type="text" name="foodname" class="form-control " value="<?php echo $f_name; ?>" placeholder="e.g : Nasi Goreng">
+  </div>
+  <br>
+  <div class="form-group" >
+                           <label for="price"><b>Price (RM):</b></label>
+                           <input type="number" name="price" class="form-control " value="<?php echo $f_price; ?>" placeholder="e.g : 5">
+  </div>
+                          <br>
+
+                          <input type="submit" class="btn btn-primary" value="Update Food">
+
+                    <div class="clearfix"></div>
+                         </div>
+                         </div>
+
+                    
+            </form>
+            </div>
+         </div>
+      </div>
+
    <!-- Ends Header -->
     <!------------ Start Content ---------------->
-        <div class="main">
+<!--         <div class="main">
           <div class="reservation_banner" style="margin-bottom:40px">
             <div class="main_title">Update food</div>
             <div class="divider"></div>
@@ -120,8 +193,6 @@
             <div class="sign-up-form">
             <form method="POST" action="bis_updateFoodscript.php" enctype="multipart/form-data">
                    <div class="col-md-8" align="center">
-<!--                      <h3>Add food form</h3> -->
-                          <!-- <div class="contact-form"> -->
                           
                                   <label class="control-label">Add Photo:</label><br>
                                   <input type="file" name="photo">
@@ -141,7 +212,7 @@
             </form>
             </div>
          </div>
-      </div>
+      </div> -->
 </body>
 </html>
 

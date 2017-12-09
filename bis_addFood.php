@@ -97,6 +97,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 
           include("authenticator.php");
           echo "<h3>Welcome, Seller ".$_SESSION['SESS_NAME']." </h3>";
+          $id = $_SESSION['SESS_MEMBER_ID'];
           ?>
         </div>
       <div class="navigation">  
@@ -133,6 +134,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
               <div class="col-md-3">
                 <label class="control-label"><b>Add food image here:</b></label><br>
                                   <input type="file" name="photo" onchange="loadFile(event)" accept="image/*">
+                                  <input type="hidden" name="id" value="<?php echo $id; ?>">
                                   <br><br>
                             <img  id="output" width="300px"/>
                               <script>
