@@ -1,6 +1,6 @@
-<!--A Design by W3layouts
+ <!--A Design by W3layouts
 Author: W3layout
-Author URL: http://w3layouts.com
+Author URL: http://w3layouts.com7
 License: Creative Commons Attribution 3.0 Unported
 License URL: http://creativecommons.org/licenses/by/3.0/
 -->
@@ -78,7 +78,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
  	    <div class="header_bottom">
 		  <div class="container">	 			
 				<div class="logo">
-					<h1><a href="index.html">Vintage<span>Restaurant</span></a></h1>
+					<h1><a href="index.html">UMP<span>Dinner ordering</span></a></h1>
 				</div>				
 			<div class="navigation">	
 			<div>
@@ -87,14 +87,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
               </label>
               <input id="mobile_menu" type="checkbox">
 				<ul class="nav">
-                 <li><a href="index.html">Home</a></li>                  
-              <li class="dropdown"><a href="room.html">Order</a>
-                <ul class="dropdown2">
-                  <li><a href="room.html">Arab Cuisine</a></li>
-                  <li><a href="room.html">Just Eat</a></li>
-                  <li><a href="room.html">Thai Food</a></li>
-                </ul>
-              </li>             
+                 <li><a href="index.html">Home</a></li>                              
                   <li><a href="about.html">About</a></li>
                   <li><a href="index.html">Log In</a></li>
                   <li><a href="sign-up.html">Sign Up</a></li>
@@ -155,7 +148,7 @@ if (mysqli_num_rows($result) > 0)
       <td> <?php echo $phonenumber; ?><br> </td>
     </tr>
     <tr>
-      <th>Hostel:</th>
+      <th>D:</th>
       <td> <?php echo $hostel; ?><br> </td>
     </tr>
 	

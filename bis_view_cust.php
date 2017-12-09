@@ -119,14 +119,14 @@ License URL: http://creativecommons.org/licenses/by/3.0/
    </div>	
   </div>
    <!-- Ends Header -->
-   <script>
+   <!-- <script>
 		document.getElementById("status_update").addEventListener("click", myFunction);
 
 		function myFunction() {
 				 document.getElementById("status_update").innerHTML = "Paid";
 				 document.getElementById("status_update").style.color = "green";
 		}
-	</script>
+	</script> -->
 
     <!------------ Start Content ---------------->
 

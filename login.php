@@ -2,7 +2,7 @@
 <html>
 <head>
 	<title>Login</title>
-	<link href="css/bootstrap.css" rel='stylesheet' type='text/css' />
+	<link href="css/bootstrap.min.css" rel='stylesheet' type='text/css' />
 	<link rel="stylesheet" type="text/css" href="login.css">
 	<link href="css/style.css" rel='stylesheet' type='text/css' />
 	<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -109,6 +109,13 @@
 		#pass{
 			width:100%;
 		}
+		.ermsg {
+			position: absolute;
+			bottom: 10px;
+			right: 10px;
+			padding-right: 100px;
+			font-size: 16pt;
+		}
 		
 	</style>
     
@@ -136,7 +143,7 @@
 					<div>
 					<p >We are the pioneers when it comes to online food ordering in university. UMP Dinner Ordering has been operating since 2007! Join us and be a part of something big! </p>
 					<br><br><br><br></div>
-					<button type="button" class="btn btn-default btn-transparent" onclick="location.href='sign-up.html';">Register Now</button>
+					<button type="button" class="btn btn-default btn-transparent" onclick="location.href='who.html';">Register Now</button>
 				</div>
 				<div class="overlay"></div>
             </div>
@@ -145,7 +152,7 @@
             // to display error message if username and password is invalid
                 if (isset($_SESSION['ERRMSG_ARR']))
                 {
-                    echo "<h1 style='color:red'>Error found: ";
+                    echo "<h1 class='ermsg'>Error found: ";
                     for ($i=0; $i<count($_SESSION['ERRMSG_ARR']); $i++)
                     {
                         echo $_SESSION['ERRMSG_ARR'][$i]."!";
@@ -202,13 +209,13 @@
 						    <input type="text" class="form-control" name="c_matricNum">
 						  </div>
 						  <div class="form-group">
-						    <label for="c_password">Password:</label>
+						    <label for="pass">Password:</label>
 						    <input type="password" id="pass" class="form-control" name="c_password">
 						  </div>
 
-						  <button type="submit" class="btn btn-block btn-lg btn-primary	">Login</button>
+						  <button type="submit" class="btn btn-block btn-lg btn-primary	">Customer Login</button>
 							  <br><br>
-							  <p>Don't have an account yet?  <a href="sign-up.html">Register Now</a></p> 
+							  <p>Don't have an account yet?  <a href="who.html">Register Now</a></p> 
 						</form>
 					</div>
 
@@ -220,14 +227,16 @@
 						    <label for="b_matricNum">Seller Matric Number:</label>
 						    <input type="text" class="form-control" name="b_matricID">
 						  </div>
+
+
 						  <div class="form-group">
 						    <label for="b_password">Password:</label>
 						    <input type="password" id="pass" class="form-control" name="b_password">
 						  </div>
 
-						  <button type="submit" class="btn btn-block btn-lg btn-primary	">Login</button>
+						  <button type="submit" class="btn btn-block btn-lg btn-primary	">Seller Login</button>
 							  <br><br>
-							  <p>Don't have an account yet?  <a href="sign-up.html">Register Now</a></p> 
+							  <p>Don't have an account yet?  <a href="who.html">Register Now</a></p> 
 						</form>
 					</div>
 

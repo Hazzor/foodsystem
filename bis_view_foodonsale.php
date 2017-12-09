@@ -63,7 +63,26 @@
 <link rel="stylesheet" href="fonts/css/font-awesome.min.css">
 <style type="text/css">
 	.error {color: #FF0000;}
+	td{
+		padding:0px;
+		font-size: 17px;
+		padding-bottom: 5px;
+	}
+	.first{
+		font-weight: 600;
+	}
+	h4{
+		font-weight: bold;
+	}
+	.btn{
+		color:white;
+	}
 
+	#photo {
+		height: 200px; 
+		width: 200px;
+		overflow: hidden;
+	}
 </style>
 
 </head>
@@ -120,19 +139,37 @@
 				<div class="card card-padding">
 					  <div class="card-block">
 					  	<div class="row">
-					  		<div class="col-sm-6">
-					  			<img src="images/arabfood1.jpg" width="100%">
+					  		<div class="col-sm-6" align="center" id="photo">
+					  			<img src="<?php echo $f_photo; ?>" width="100%">
 					 	 	</div>
 
 					  		<div class="col-sm-6" align="left">
-							    <h4 class="card-title"> <?php echo $f_name; ?> </h4>
-							    <p class="card-text">Location : <?php echo $b_location; ?> </p>
-							    <p class="card-text">Distribution time : <?php echo date('g:i a ', strtotime($b_timeStart)); ?> - <?php echo date('g:i a ', strtotime($b_timeEnd)); ?> </p>
-							    <p class="card-text">Price : <?php echo "RM ".$f_price; ?> </p>
-							    <br><br><br>
+					  		<h4 class="card-title"> <?php echo $f_name; ?> </h4>
+					  		<hr>
+					  			<table>
+					  				<tr>
+					  					<td style="width:30%" class="first"><p class="card-text">Location  </p></td>
+					  					<td style="width:70%" >: <?php echo $b_location; ?></td>
+					  				</tr>
+					  				
+					  				<tr>
+					  					<td class="first"><p class="card-text">Time  </p></td>
+					  					<td>: <?php echo date('g:ia ', strtotime($b_timeStart)); ?> - <?php echo date('g:ia ', strtotime($b_timeEnd)); ?></td>
+					  				</tr>
+					  				
+					  				<tr>
+					  					<td class="first"><p class="card-text">Price  </p></td>
+					  					<td>: <?php echo "RM ".$f_price; ?></td>
+					  				</tr>
+					  			</table>
+							    
+							    
+							    
+							    
+							    <br>
 							    <div align="right">
-								    <a href="#" class="btn btn-success"><b>Update</b></a>
-								    <a href="bis_delete_foodonsale.php?id=<?php echo $id; ?>" class="btn btn-danger nav">Delete</a>
+								    <a href="bis_update_foodonsale.php?id=<?php echo $id; ?>" class="btn btn-success"><b>Update</b></a>
+								    <a href="bis_delete_foodonsale.php?id=<?php echo $id; ?>" class="btn btn-danger "><b>Delete</b></a>
 							    </div>
 						    </div>
 

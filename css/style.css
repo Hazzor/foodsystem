@@ -297,6 +297,12 @@ th, td {
     border-collapse: collapse;
 	
 }
+.order_table tbody th{
+	text-align: left;
+}
+.order_table th:nth-child(1){
+	width:10px;
+}
 
 .order input[type="submit"] {
 	padding: 10px 15px;
@@ -657,7 +663,6 @@ span.icon-male{
 	vertical-align: middle;
 	cursor: pointer;
 	color: #333;
-	text-shadow: 0 1px 1px rgba(255,255,255,0.75);
 	border: 1px solid #ccc;
 	border-bottom-color: #b3b3b3;
 }

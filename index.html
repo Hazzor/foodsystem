@@ -68,7 +68,6 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 
 </head>
 <body>
-
  	    <div class="header_bottom">
 		 	  <div class="container">	 			
 				<div class="logo">
@@ -107,8 +106,29 @@ License URL: http://creativecommons.org/licenses/by/3.0/
         		<div class="order_banner">
 				<div class="main_title">Food Shops Available</div>
 				<div class="divider"></div>
-				</div> 
-         <div class="container">          	 
+				</div>
+         <div class="container"> 
+         		<?php
+					    include("dbase.php");
+					    $today = date("d-m-Y", time());
+						
+						$query ="SELECT b_location, b_timeStart, b_timeEnd, b_name, tarikh business_info";
+						
+						$result = mysqli_query($conn,$query);
+						if (mysqli_num_rows($result) > 0){ 
+							while($row = mysqli_fetch_assoc($result)){
+							$tarikh = $row ["tarikh"];
+							$b_name = $row ["b_name"];
+						  	$b_location = $row["b_location"];
+						   	$b_timeStart = $row["b_timeStart"];
+						    $b_timeEnd = $row["b_timeEnd"]; 
+						    $masa = $b_timeStart; 
+							date('h:i a ', strtotime($masa));
+
+					    }
+				}else{
+					echo "No results";
+				}
 	 		 <div class="row grids text-center">
 				 <div class="col-md-4">
 					<div class="view view-tenth">
@@ -116,6 +136,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 						   <div class="inner_content clearfix">
 							<div class="product_image">
 								<img src="images/arabcuisine1.jpg" class="img-responsive" alt=""/>
+
 								<div class="label-product">
                                 <span class="new">From RM 5</span> </div>
 								<div class="mask" >

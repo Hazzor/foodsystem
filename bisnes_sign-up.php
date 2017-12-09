@@ -1,17 +1,10 @@
-<?php
-          include("dbase.php");
-          $id = $_GET['id'];
-        $query ="SELECT food_id, f_name, f_photo, f_price, b_location, b_timeStart, b_timeEnd FROM food_info, business_info WHERE food_id IN (SELECT food_fk FROM business_food_mapping WHERE business_fk IN (SELECT business_id FROM business_info WHERE b_name='just eat' AND food_id='$id')) "; 
-        $result = mysqli_query($conn,$query);
-        $row = mysqli_fetch_assoc($result);
-        $id = $row["food_id"];
-        $f_name = $row["f_name"];
-        $f_photo = $row["f_photo"];
-        $f_price = $row["f_price"];
-          $b_location = $row["b_location"];
-          $b_timeStart = $row["b_timeStart"];
-          $b_timeEnd = $row["b_timeEnd"]; 
-          ?>
+<!--A Design by W3layouts
+Author: W3layout
+Author URL: http://w3layouts.com
+License: Creative Commons Attribution 3.0 Unported
+License URL: http://creativecommons.org/licenses/by/3.0/
+-->
+
 <!DOCTYPE HTML>
 <html>
 <head>
@@ -20,7 +13,6 @@
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 <!-- Custom Theme files -->
 <link href="css/style.css" rel='stylesheet' type='text/css' />
-
 <!-- Custom Theme files -->
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
@@ -31,7 +23,6 @@
 <script src="js/modernizr.custom.js" type="text/javascript"></script>
 <script src="js/jquery.openCarousel.js" type="text/javascript"></script>
 <script src="js/fwslider.js" type="text/javascript"></script>
-<!-- <script src="js/dropzone.js"></script> -->
 <script type="text/javascript" charset="utf-8">
   $(document).ready(function() {
       $('#slider').fwslider({
@@ -45,6 +36,7 @@
       });
   });
   </script>   
+
  <!---- animated-css ---->
 <link href="css/animate.css" rel="stylesheet" type="text/css" media="all">
 <script src="js/wow.min.js"></script>
@@ -112,32 +104,74 @@
     <!------------ Start Content ---------------->
         <div class="main">
           <div class="reservation_banner" style="margin-bottom:40px">
-            <div class="main_title">Update food</div>
+            <div class="main_title">Sell food</div>
             <div class="divider"></div>
          </div>
 
-          <div class="container" align="center">
+          <div class="container">
             <div class="sign-up-form">
-            <form method="POST" action="bis_updateFoodscript.php" enctype="multipart/form-data">
-                   <div class="col-md-8" align="center">
-<!--                      <h3>Add food form</h3> -->
-                          <!-- <div class="contact-form"> -->
-                          
-                                  <label class="control-label">Add Photo:</label><br>
-                                  <input type="file" name="photo">
-                            
-                                  <input type="hidden" name="id" value="<?php echo $id; ?>">
-                          <input type="text" name="foodname" value="<?php echo $f_name; ?>">
-                          RM<input type="number" name="price" value="<?php echo $f_price; ?>">
+            <form method="POST" action="bis_signupscript.php" enctype="multipart/form-data">
+              <div class="row" align="center">
+                <div class="col-md-2"></div>
+              <div class="col-md-3">
+                <label class="control-label"><b>Add business profile image here:</b></label><br>
+                                  <input type="file" name="photo" onchange="loadFile(event)" accept="image/*">
+                                  <br><br>
+                            <img  id="output" width="300px"/>
+                              <script>
+                                var loadFile = function(event) {
+                                  var output = document.getElementById('output');
+                                    output.src = URL.createObjectURL(event.target.files[0]);
+                                };
+                              </script>
+              </div>
 
-                          <br>
-                         </div>
+                   <div class="col-md-7" align="center">
+                                  
+                      <div class="form-group" >
+                        <label for="foodname"><b>Business Name :</b></label>
+                        <input type="text" name="foodname" class="form-control " placeholder="e.g : Just Eat Dinner Ordering">
+                      </div><br>
 
-                    <input type="submit"  value="Update Food">
+                      <div class="form-group" >
+                        <label for="sellermatric"><b>Seller matric number :</b></label>
+                        <input type="text" name="sellermatric" class="form-control " placeholder="e.g : CC15249">
+                      </div><br>
+
+                      <div class="form-group" >
+                        <label for="password"><b>Password :</b></label>
+                        <input type="password" name="password" class="form-control " placeholder="Must be more than 5 characters">
+                      </div><br>
+
+                      <div class="form-group" >
+                        <label for="hpNum"><b>Mobile number :</b></label>
+                        <input type="number" name="hpNum" class="form-control " placeholder="e.g : 013-8299365">
+                      </div><br>
+
+                      <select class="sign-up-form select" name="location">
+                        <option value="" disabled selected>Location of food distribution ?</option>
+                        <option value="KK1">KK1</option>
+                        <option value="KK2">KK2</option>
+                        <option value="KK3">KK3</option>
+                        <option value="KK4">KK4</option>
+                      </select> <br><br><br>
+                      
+
+                      <div class="form-group" >
+                        <label for="start_time"><b>Distribution time :</b></label>
+                        <input style="width:250px" type="time" class="form-control" value = "18:00" name="start_time"> to <input style="width:250px" type="time" class="form-control"  value = "19:00" name="end_time">
+                      </div><br>
+
+<script type="text/javascript">
+  
+</script>
+                          <input type="submit" class="btn btn-primary" value="Register my business">
 
                     <div class="clearfix"></div>
-                      
-                  </div>
+                         </div>
+                         </div>
+
+                    
             </form>
             </div>
          </div>

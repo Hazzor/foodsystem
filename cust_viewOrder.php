@@ -68,6 +68,17 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <style type="text/css">
 	.error {color: #FF0000;}
 
+	td{
+		padding:0px;
+		font-size: 17px;
+	}
+	.first{
+		font-weight: 600;
+	}
+	h4{
+		font-weight: bold;
+	}
+
 </style>
 
 </head>
@@ -137,13 +148,36 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 
 					  		<div class="col-sm-6" align="left">
 							    <h4 class="card-title"><?php echo $f_name; ?></h4>
-							    <br>
-							    <p class="card-text">Seller Name : <?php echo $b_name; ?></p>
-							    <p class="card-text">Location : <?php echo $b_location; ?> </p>
-							    <p class="card-text">Distribution date : <?php echo $tarikh; ?></p>
-							    <p class="card-text">Distribution time : <?php echo date('g:i a ', strtotime($b_timeStart)); ?> - <?php echo date('g:i a ', strtotime($b_timeEnd)); ?></p>
-								<p class="card-text">Quantity : <?php echo $quantity; ?></p>
-							    <p class="card-text">Price : <?php echo "RM ".number_format((float)$total, 2, '.', '');; ?></p>
+							    
+							    <hr>
+							    <table>
+							    
+							    	<tr>
+							    		<td style="width:45%" class="first"><p class="card-text">Seller Name  </p></td>
+							    		<td style="width:55%">: <?php echo $b_name; ?></td>
+							    	</tr>
+							    	<tr>
+							    		<td class="first"><p class="card-text">Location  </p></td>
+							    		<td>:   <?php echo $b_location; ?></td>
+							    	</tr>
+							    	<tr>
+							    		<td class="first"><p class="card-text">Date </p></td>
+							    		<td>:   <?php echo $tarikh; ?></td>
+							    	</tr>
+							    	<tr>
+							    		<td class="first"> <p class="card-text">Time </p></td>
+							    		<td>:   <?php echo date('g:ia ', strtotime($b_timeStart)); ?> - <?php echo date('g:ia ', strtotime($b_timeEnd)); ?></td>
+							    	</tr>
+							    	<tr>
+							    		<td class="first"><p class="card-text">Quantity </p></td>
+							    		<td>:   <?php echo $quantity; ?></td>
+							    	</tr>
+							    	<tr>
+							    		<td class="first"><p class="card-text">Price  </p></td>
+							    		<td>:   <?php echo "RM ".number_format((float)$total, 2, '.', ''); ?></td>
+							    	</tr>
+							    </table>
+							    
 						    </div>
 
 				    </div>

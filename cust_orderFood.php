@@ -78,6 +78,11 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 	background-position: center;
 	padding: 2em 0 3em;
 }
+#short {
+	width: 5px;
+}
+
+
 </style>
 
 </head>
@@ -135,9 +140,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 				               	</div>
 				           	</div>
 					   	</div>
-						<div id="remargin1" class="product_container wow bounceIn" data-wow-delay="0.4s">
-								<p>Set A <br> RM6</p>
-					    </div>		
+								
 			       	</div>
 					    <div class="col-md-4">
 							<div class="view view-tenth">
@@ -155,9 +158,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 						                  	</div>
 						           	</div>
 						    </div>
-					       	<div id="remargin1" class="product_container wow bounceIn" data-wow-delay="0.4s">
-									  <p>Set B <br> RM6</p>
-						  	</div>
+					       	
 			            </div>
 					    <div class="col-md-4">
 						  	<div class="view view-tenth">
@@ -175,64 +176,62 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 				                    </div>
 				                </div>
 					        </div>
-					        <div id="remargin1" class="product_container wow bounceIn" data-wow-delay="0.4s">
-									  <p>Set C <br> RM6</p>
-						    </div>
+					       
 			            </div>
 				</div>
-
-				<!-- Script -->
-				<script>
-					var price1 = 6;
-					var price2 = 6;
-					var price3 = 6;
-					var total = price1 + price2;
-					document.getElementById("demo").innerHTML =
-					"The total is: " + total;
-				</script>
-
 				<!-- DATA --> 
-					<form method="post" action="enter_order.php">
-					 	<table class="order_table" align="center">
+			<tbody>
+				<?php 
+					 include("dbase.php");
+
+				$query ="SELECT food_id, f_name,  f_price, b_location, b_timeStart FROM food_info, business_info WHERE food_id IN (SELECT food_fk FROM business_food_mapping WHERE business_fk IN (SELECT business_id FROM business_info WHERE business_id='1')) "; 
+				$result = mysqli_query($conn,$query);
+				if (mysqli_num_rows($result) > 0){ 
+					while($row = mysqli_fetch_assoc($result)){
+						?>
+						<form method="post" action="enter_order.php">
+						<table class="order_table" align="center">
 					 		<tr>
-							<th>Food Name:</th>
-								<td><select class="sign-up-form select" name="menu">
-	                                    <option value="" disabled selected>Select 1 set</option>
-	                                    <option value="set_a">Set A</option>
-	                                    <option value="set_b">Set B</option>
-	                                    <option value="set_c">Set C</option>
-	                                </select>
-	                            </td>
-                            </tr>
-                            <tr>
+								<th>Food Name:</th>
+	                            <td><?php echo $row['f_name']; ?></td>
+	                        </tr>
+
+	                        <tr>
                             	<th>Quantity:</th>
                             	<td><input type="number" name="quantity"></td>
                             </tr>
+
                             <tr>
                             	<th>Time Distribute</th>
-                            	<td>06.00pm</td>
+                            	<td><?php echo $row['b_timeStart']; ?></td>
                             </tr>
+							
                             <tr>
                             	<th>Location</th>
-                            	<td>KK4</td>
+                            	<td><?php echo $row['b_location']; ?></td>
                             </tr>
                             <tr>
                             	<th>Price</th>
-                            	<td>RM6</td>
+                            	<td><?php echo $row['f_price']; ?></td>
                             </tr>
-                            <tr>
-                            	<th>Total Price</th>
-                            	<td></td>
-                            </tr>
+                            
+                            
                         </table>
                             <!-- Submit -->
-                            <div class="order" align="center">
+                            
+						</tbody>
+					</div>
+				</div>
+                
+				<?php
+				}
+				}else{
+					echo "No results";
+				}
+				?>
+				<div class="order" align="center">
 								<p><input type="submit" value="Order Now!"></p>
 							</div>
-					</form>
-	       	</div>
-	 	</div>
-
-</body>
-</html>
-
+			</body>
+			</html>
+	
