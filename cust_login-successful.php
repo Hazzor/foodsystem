@@ -115,7 +115,7 @@ echo "<h3><center>Welcome ".$_SESSION['SESS_NAME']." , Login Successfully </cent
 
 ?>
 <div class="container" align="center">
-        <h1> Click here to <a href="index.html">Homepage</a> </h1>
+        <h1> Click here to <a href="index.php">Homepage</a> </h1>
         <p></p>
         <h1> Click here to <a href="cust_orderFood.php">Order Food</a> </h1>
         

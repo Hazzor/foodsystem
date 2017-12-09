@@ -6,6 +6,8 @@
 
 //Start session
 session_start();
+$r=session_id();
+
 
 //Validation error flag
 $errflag = false;
@@ -73,5 +75,10 @@ else
 {
     die("Query failed");    
 }
+
+/* now registering a session for an authenticated user */
+$_SESSION['c_name']=$username;
+echo "the session id id: ".$r;
+echo " and the session has been registered for: ".$_SESSION['username'];
 
 ?>

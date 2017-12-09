@@ -67,6 +67,18 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 
 
 </head>
+<?php
+/*
+ Filename: login-successful.php
+ Purpose: To display protected web page if user is valid.
+ Note: If you enter directly to this page, you will be checked by the authenticator, and then redirect to login-failed.html.
+*/
+
+include("authenticator.php");
+echo "<h3><center>Welcome ".$_SESSION['SESS_NAME']." , Login Successfully </center></h3><br/>";
+
+?>
+
 <body>
  	    <div class="header_bottom">
 		 	  <div class="container">	 			
@@ -126,9 +138,8 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 							date('h:i a ', strtotime($masa));
 
 					    }
-				}else{
-					echo "No results";
 				}
+				
 	 		 <div class="row grids text-center">
 				 <div class="col-md-4">
 					<div class="view view-tenth">

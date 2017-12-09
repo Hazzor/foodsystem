@@ -127,6 +127,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
               </div>
 
                    <div class="col-md-7" align="center">
+                    <form action="sign-up.html" method="post">
                                   
                       <div class="form-group" >
                         <label for="foodname"><b>Business Name :</b></label>
@@ -155,7 +156,6 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                         <option value="KK3">KK3</option>
                         <option value="KK4">KK4</option>
                       </select> <br><br><br>
-                      
 
                       <div class="form-group" >
                         <label for="start_time"><b>Distribution time :</b></label>
@@ -165,8 +165,9 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <script type="text/javascript">
   
 </script>
-                          <input type="submit" class="btn btn-primary" value="Register my business">
 
+                          <input type="submit" class="btn btn-primary" value="Register my business">
+</form>
                     <div class="clearfix"></div>
                          </div>
                          </div>
