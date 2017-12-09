@@ -67,7 +67,7 @@
     <div class="header_bottom">
               <div class="container">               
                 <div class="logo">
-                    <h1><a href="index.html">UMP DINNER<span>Ordering</span></a></h1>
+                    <h1><a href="index.php">UMP DINNER<span>Ordering</span></a></h1>
                 </div>              
             <div class="navigation">    
             <div>
@@ -76,9 +76,9 @@
               </label>
               <input id="mobile_menu" type="checkbox">
                 <ul class="nav">
-              <li><a href="index.html">Home</a></li>                  
+              <li><a href="index.php">Home</a></li>                  
                      
-              <li><a href="about.html">View Order</a></li>
+              <li><a href="cust_viewOrder.php">View Order</a></li>
                   
 
             <li><a href="logout.php">Logout</a></li>
@@ -103,6 +103,7 @@
                 <div class="main_title">Welcome</div>
                 <div class="divider"></div>
                 </div> 
+                 <p> <br> </p>
                 <?php
 /*
  Filename: login-successful.php
@@ -115,11 +116,12 @@ echo "<h3><center>Welcome ".$_SESSION['SESS_NAME']." , Login Successfully </cent
 
 ?>
 <div class="container" align="center">
-        <h1> Click here to <a href="index.php">Homepage</a> </h1>
-        <p></p>
-        <h1> Click here to <a href="cust_orderFood.php">Order Food</a> </h1>
-        
-        <a href="logout.php"> Logout Here</a>
+        <button class="btn btn-primary btn2 btn-normal btn-inline"> <a href="index.php"> <h1> Homepage </h1></a> </button>
+        <p> <br> </p>
+<!--         <button class="btn btn-primary btn2 btn-normal btn-inline"> <a href="cust_orderFood.php"> <h1> Order Food </h1></a> </button> -->
+        <p> <br> </p>
+         <button class="btn btn-primary btn2 btn-normal btn-inline"> <a href="logout.php"><h1>Log Out </h1></a> </button>
+         <p> <br> </p>
     </div>
     </body>
 </html>

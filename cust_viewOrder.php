@@ -78,6 +78,11 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 	h4{
 		font-weight: bold;
 	}
+	#user {
+   		padding-top: 45px;
+   		padding-left: 250px;
+   		position: absolute;
+   	}
 
 </style>
 
@@ -87,8 +92,21 @@ License URL: http://creativecommons.org/licenses/by/3.0/
  	    <div class="header_bottom">
 		 	  <div class="container">	 			
 				<div class="logo">
-					<h1><a href="index.html">UMP DINNER<span>Ordering</span></a></h1>
+					<h1><a href="index.php">UMP DINNER<span>Ordering</span></a></h1>
 				</div>				
+				<div id="user">	
+				<?php
+					/*
+					 Filename: login-successful.php
+					 Purpose: To display protected web page if user is valid.
+					 Note: If you enter directly to this page, you will be checked by the authenticator, and then redirect to login-failed.html.
+					*/
+
+					include("authenticator.php");
+					echo "<h3>Welcome, ".$_SESSION['SESS_NAME']." </h3>";
+					$cust_id=$_SESSION ['SESS_CUSTOMER_ID'];
+					?>
+				</div>
 			<div class="navigation">	
 			<div>
               <label class="mobile_menu" for="mobile_menu">
@@ -96,8 +114,8 @@ License URL: http://creativecommons.org/licenses/by/3.0/
               </label>
               <input id="mobile_menu" type="checkbox">
 				<ul class="nav">
-              <li><a href="index.html">Home</a></li>                  
-            <li><a href="index.html">Logout</a></li>
+              <li><a href="index.php">Home</a></li>                  
+            <li><a href="logout.php">Logout</a></li>
             
             <div class="clearfix"></div>
           </ul>
@@ -120,7 +138,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 			    include("dbase.php");
 			    $today = date("d-m-Y", time());
 				
-				$query ="SELECT f_name, f_photo, f_price, b_location, b_timeStart, b_timeEnd, b_name, quantity, tarikh FROM food_info, business_info, business_food_mapping, customer_food_mapping, customer_info WHERE  customer_info.customer_id='14' AND customer_food_mapping.tarikh = '$today' AND customer_info.customer_id = customer_food_mapping.customer_fk AND customer_food_mapping.food_fk = food_info.food_id AND food_info.food_id = business_food_mapping.food_fk AND business_info.business_id ";
+				$query ="SELECT f_name, f_photo, f_price, b_location, b_timeStart, b_timeEnd, b_name, quantity, tarikh FROM food_info, business_info, business_food_mapping, customer_food_mapping, customer_info WHERE  customer_info.customer_id='$cust_id' AND customer_food_mapping.tarikh = '$today' AND customer_info.customer_id = customer_food_mapping.customer_fk AND customer_food_mapping.food_fk = food_info.food_id AND food_info.food_id = business_food_mapping.food_fk AND business_info.business_id ";
 				
 				$result = mysqli_query($conn,$query);
 				if (mysqli_num_rows($result) > 0){ 
@@ -143,7 +161,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 					  <div class="card-block">
 					  	<div class="row">
 					  		<div class="col-sm-6">
-					  			<img src="images/arabfood1.jpg" width="100%">
+					  			<img src="<?php echo $f_photo ?>" width="100%">
 					 	 	</div>
 
 					  		<div class="col-sm-6" align="left">

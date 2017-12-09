@@ -72,7 +72,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
         <div class="header_bottom">
               <div class="container">               
                 <div class="logo">
-                    <h1><a href="index.html">UMP DINNER<span>Ordering</span></a></h1>
+                    <h1><a href="index.php">UMP DINNER<span>Ordering</span></a></h1>
                 </div>              
             <div class="navigation">    
             <div>
@@ -81,9 +81,9 @@ License URL: http://creativecommons.org/licenses/by/3.0/
               </label>
               <input id="mobile_menu" type="checkbox">
                 <ul class="nav">
-              <li><a href="index.html">Home</a></li>                  
+              <li><a href="index.php">Home</a></li>                  
                      
-              <li><a href="about.html">View Order</a></li>
+              <li><a href="cust_viewOrder.php">View Order</a></li>
                   
 
             <li><a href="index.html">Logout</a></li>
@@ -127,9 +127,14 @@ session_destroy();
         </div>
 
         <div align="center">
-            <h1> See you again!!!</h1>
-            <h2> You have been logged out. </h4>
+          <p><br></p>
+          <h2> You have been logged out. </h2>
+            <p><br></p>
+            <h2> See you again!!!</h2>
                 <p><br></p>
-            <h3> Click here to <a href="login.php">Login</a> </h3>
+                <p><br></p>
+                <p><br></p>
+
+            <button class="btn btn-primary btn2 btn-normal btn-inline"><h1><a href="login.php">     Login Again     </a> </h1></button>
     </body>
 </html>

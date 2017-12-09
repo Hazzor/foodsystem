@@ -1,17 +1,14 @@
-<!--A Design by W3layouts
-Author: W3layout
-Author URL: http://w3layouts.com
-License: Creative Commons Attribution 3.0 Unported
-License URL: http://creativecommons.org/licenses/by/3.0/
--->
+  
+
 <!DOCTYPE HTML>
 <html>
 <head>
 <title>UMP Dinner Ordering</title>
-<link href="css/bootstrap.css" rel='stylesheet' type='text/css' />
+<link href="css/bootstrap.min.css" rel='stylesheet' type='text/css' />
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 <!-- Custom Theme files -->
 <link href="css/style.css" rel='stylesheet' type='text/css' />
+
 <!-- Custom Theme files -->
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
@@ -66,23 +63,33 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <link rel="stylesheet" href="fonts/css/font-awesome.min.css">
 <style type="text/css">
 	.error {color: #FF0000;}
+	td{
+		padding:0px;
+		font-size: 17px;
+		padding-bottom: 5px;
+	}
+	.first{
+		font-weight: 600;
+	}
+	h4{
+		font-weight: bold;
+	}
+	.btn{
+		color:white;
+	}
 
-	#orderfood_banner{
+	#photo {
+		height: 200px; 
+		width: 200px;
+		overflow: hidden;
+	}
 
-	background: url("images/order.jpg")no-repeat center top;
-	background-size: 100% 100%;
-	-webkit-background-size: cover;
-	-moz-background-size: cover;
-	-o-background-size: cover;
-	background-size: cover;
-	background-position: center;
-	padding: 2em 0 3em;
-}
-#short {
-	width: 5px;
-}
-
-
+	#user {
+   		padding-top: 45px;
+   		padding-left: 250px;
+   		position: absolute;
+   	}
+   	
 </style>
 
 </head>
@@ -91,8 +98,21 @@ License URL: http://creativecommons.org/licenses/by/3.0/
  	    <div class="header_bottom">
 		 	  <div class="container">	 			
 				<div class="logo">
-					<h1><a href="index.html">UMP DINNER<span>Ordering</span></a></h1>
+					<h1><a href="index.php">UMP DINNER<span>Ordering</span></a></h1>
 				</div>				
+				<div id="user">	
+				<?php
+					/*
+					 Filename: login-successful.php
+					 Purpose: To display protected web page if user is valid.
+					 Note: If you enter directly to this page, you will be checked by the authenticator, and then redirect to login-failed.html.
+					*/
+
+					include("authenticator.php");
+					echo "<h3>Welcome, ".$_SESSION['SESS_NAME']." </h3>";
+					?>
+				</div>
+
 			<div class="navigation">	
 			<div>
               <label class="mobile_menu" for="mobile_menu">
@@ -100,12 +120,8 @@ License URL: http://creativecommons.org/licenses/by/3.0/
               </label>
               <input id="mobile_menu" type="checkbox">
 				<ul class="nav">
-              <li><a href="index.html">Home</a></li>                  
-                     
-              <li><a href="about.html">View Order</a></li>
-                  
-
-            <li><a href="index.html">Logout</a></li>
+              <li><a href="index.php">Home</a></li>                  
+            <li><a href="index.php">Logout</a></li>
             
             <div class="clearfix"></div>
           </ul>
@@ -113,125 +129,80 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 	 </div>
      <div class="clearfix"></div>		   
     </div>
-   </div>	
+   </div>
   </div>
    <!-- Ends Header -->
-    <!------------ Start Content ---------------->
+     <!------------ Start Content ---------------->
         <div class="main">
 	        <div class="order_banner">
 				<div class="main_title">ORDER HERE</div>
 				<div class="divider"></div>
-			</div>        	
-	        <div class="container">          	 
-		 		<div class="row grids text-center">
-					<div class="col-md-4">
-						<div class="view view-tenth">
-							<div class="inner_content clearfix">
-								<div class="product_image">
-									<img src="images/arabfood1.jpg" class="img-responsive" alt=""/>
-										<div class="label-product">
-	                                		<span class="new">Roasted Chicken Al-Kabsa</span> 
-	                                	</div>
-									<div class="mask" >
-				                        <h2>Delight Arabic Cuisine</h2>
-				                        <h3>Al kabsa is a traditional delicious chicken and rice dish from Saudi Arabia</h3>
-				                        <div class="info"><i class="fa fa-search-plus"></i> </div>
-				                    </div>
-				               	</div>
-				           	</div>
-					   	</div>
-								
-			       	</div>
-					    <div class="col-md-4">
-							<div class="view view-tenth">
-									<div class="inner_content clearfix">
-											<div class="product_image">
-												<img src="images/arabfood2.jpg" class="img-responsive" alt=""/>
-												<div class="label-product">
-				                                		<span class="new">Grilled Chicken Kebab</span> 
-				                            	</div>
-												<div class="mask" >
-							                        <h2>Delight Arabic Cuisine</h2>
-							                        <h3>Grilled Chicken Kebab is a juicy tender grilled chicken. Skewers are bursting with vibrant flavor</h3>
-							                        <div class="info"><i class="fa fa-search-plus"></i> </div>
-							                    </div>
-						                  	</div>
-						           	</div>
-						    </div>
-					       	
-			            </div>
-					    <div class="col-md-4">
-						  	<div class="view view-tenth">
-							   	<div class="inner_content clearfix">
-									<div class="product_image">
-										<img src="images/arabfood3.jpg" class="img-responsive" alt=""/>
-										<div class="label-product">
-	                                		<span class="new">Grilled Tandoori Chicken</span> 
-	                                	</div>
-										<div class="mask">
-					                        <h2>Delight Arabic Cuisine</h2>
-					                        <h3>Tandoori chicken is an amazingly simple way to make grilled chicken drumsticks.</h3>
-					                         <div class="info"><i class="fa fa-search-plus"></i> </div>
-					                    </div>
-				                    </div>
-				                </div>
-					        </div>
-					       
-			            </div>
-				</div>
-				<!-- DATA --> 
-			<tbody>
-				<?php 
-					 include("dbase.php");
+			</div>            	
+	        <div class="container" align="center" >
+			<?php
+			    include("dbase.php");
+			     $id = $_GET['id'];
+			     
 
-				$query ="SELECT food_id, f_name,  f_price, b_location, b_timeStart FROM food_info, business_info WHERE food_id IN (SELECT food_fk FROM business_food_mapping WHERE business_fk IN (SELECT business_id FROM business_info WHERE business_id='1')) "; 
+				$query ="SELECT food_id, f_name, f_photo, f_price, b_location, b_timeStart, b_timeEnd FROM food_info, business_info WHERE 	food_id IN (SELECT food_fk FROM business_food_mapping WHERE business_fk IN (SELECT business_id FROM business_info WHERE business_id = $id ))  "; 
 				$result = mysqli_query($conn,$query);
 				if (mysqli_num_rows($result) > 0){ 
-					while($row = mysqli_fetch_assoc($result)){
-						?>
-						<form method="post" action="enter_order.php">
-						<table class="order_table" align="center">
-					 		<tr>
-								<th>Food Name:</th>
-	                            <td><?php echo $row['f_name']; ?></td>
-	                        </tr>
+				// output data of each row
+				while($row = mysqli_fetch_assoc($result)){
+				$id = $row["food_id"];
+				$f_name = $row["f_name"];
+				$f_photo = $row["f_photo"];
+			 	$f_price = $row["f_price"];
+			  	$b_location = $row["b_location"];
+			   	$b_timeStart = $row["b_timeStart"];
+			    $b_timeEnd = $row["b_timeEnd"]; 
+			    ?>
+				<div class="card card-padding">
+					  <div class="card-block">
+					  	<div class="row">
+					  		<div class="col-sm-6" align="center" id="photo">
+					  			<img src="<?php echo $f_photo; ?>" width="100%">
+					 	 	</div>
 
-	                        <tr>
-                            	<th>Quantity:</th>
-                            	<td><input type="number" name="quantity"></td>
-                            </tr>
+					  		<div class="col-sm-6" align="left">
+					  		<h4 class="card-title"> <?php echo $f_name; ?> </h4>
+					  		<hr>
+					  			<table>
+					  				<tr>
+					  					<td style="width:30%" class="first"><p class="card-text">Location  </p></td>
+					  					<td style="width:70%" >: <?php echo $b_location; ?></td>
+					  				</tr>
+					  				
+					  				<tr>
+					  					<td class="first"><p class="card-text">Time  </p></td>
+					  					<td>: <?php echo date('g:ia ', strtotime($b_timeStart)); ?> - <?php echo date('g:ia ', strtotime($b_timeEnd)); ?></td>
+					  				</tr>
+					  				
+					  				<tr>
+					  					<td class="first"><p class="card-text">Price  </p></td>
+					  					<td>: <?php echo "RM ".$f_price; ?></td>
+					  				</tr>
+					  			</table>
+							    <br>
+							    <div align="right">
+								    <a href="cust_place_order.php?id=<?php echo $id; ?>" class="btn btn-success"><b>Order Food</b></a>
+							    </div>
 
-                            <tr>
-                            	<th>Time Distribute</th>
-                            	<td><?php echo $row['b_timeStart']; ?></td>
-                            </tr>
-							
-                            <tr>
-                            	<th>Location</th>
-                            	<td><?php echo $row['b_location']; ?></td>
-                            </tr>
-                            <tr>
-                            	<th>Price</th>
-                            	<td><?php echo $row['f_price']; ?></td>
-                            </tr>
-                            
-                            
-                        </table>
-                            <!-- Submit -->
-                            
-						</tbody>
-					</div>
+						    </div>
+
+				    </div>
+				  </div>
 				</div>
-                
 				<?php
 				}
 				}else{
-					echo "No results";
+					echo "No food on sale today";
 				}
 				?>
-				<div class="order" align="center">
-								<p><input type="submit" value="Order Now!"></p>
-							</div>
-			</body>
-			</html>
-	
+
+
+			</div>
+		</div>
+
+</body>
+</html>

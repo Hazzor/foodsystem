@@ -35,6 +35,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 	    });
 	});
 	</script>		
+	
  <!---- animated-css ---->
 <link href="css/animate.css" rel="stylesheet" type="text/css" media="all">
 <script src="js/wow.min.js"></script>
@@ -62,29 +63,40 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 	    });
 	});
    </script>
+   <style type="text/css">
+   	
+   	#user {
+   		padding-top: 45px;
+   		padding-left: 250px;
+   		position: absolute;
+   	}
+   </style>
   
 <link rel="stylesheet" href="fonts/css/font-awesome.min.css">
 
 
 </head>
-<?php
-/*
- Filename: login-successful.php
- Purpose: To display protected web page if user is valid.
- Note: If you enter directly to this page, you will be checked by the authenticator, and then redirect to login-failed.html.
-*/
-
-include("authenticator.php");
-echo "<h3><center>Welcome ".$_SESSION['SESS_NAME']." , Login Successfully </center></h3><br/>";
-
-?>
 
 <body>
  	    <div class="header_bottom">
 		 	  <div class="container">	 			
 				<div class="logo">
-					<h1><a href="index.html">UMP DINNER<span>Ordering</span></a></h1>
-				</div>				
+					<h1><a href="index.php">UMP DINNER<span>Ordering</span></a></h1>
+				</div>	
+				<div id="user">	
+				<?php
+					/*
+					 Filename: login-successful.php
+					 Purpose: To display protected web page if user is valid.
+					 Note: If you enter directly to this page, you will be checked by the authenticator, and then redirect to login-failed.html.
+					*/
+
+					include("authenticator.php");
+					echo "<h3>Welcome, ".$_SESSION['SESS_NAME']." </h3>";
+					?>
+				</div>
+
+
 			<div class="navigation">	
 			<div>
               <label class="mobile_menu" for="mobile_menu">
@@ -92,14 +104,17 @@ echo "<h3><center>Welcome ".$_SESSION['SESS_NAME']." , Login Successfully </cent
               </label>
               <input id="mobile_menu" type="checkbox">
 				<ul class="nav">
-              <li><a href="index.html">Home</a></li>                  
+              <li><a href="index.php">Home</a></li>                  
                      
-              <li><a href="about.html">View Order</a></li>
+              <li><a href="cust_viewOrder.php">View Order</a></li>
                   
 
             <li><a href="logout.php">Logout</a></li>
-            
+
+            <div class="left">
+            	    
             <div class="clearfix"></div>
+            
           </ul>
 		</div>			
 	 </div>
@@ -113,6 +128,8 @@ echo "<h3><center>Welcome ".$_SESSION['SESS_NAME']." , Login Successfully </cent
 	</div> -->
   </div>
    <!-- Ends Header -->
+
+			    
     <!------------ Start Content ---------------->
         <div class="main">
         		<div class="order_banner">
@@ -120,33 +137,39 @@ echo "<h3><center>Welcome ".$_SESSION['SESS_NAME']." , Login Successfully </cent
 				<div class="divider"></div>
 				</div>
          <div class="container"> 
-         		<?php
-					    include("dbase.php");
-						$query ="SELECT b_location, b_timeStart, b_timeEnd, b_name";
-						
-						$result = mysqli_query($conn,$query);
-						if (mysqli_num_rows($result) > 0){ 
-							while($row = mysqli_fetch_assoc($result)){
-							$b_name = $row ["b_name"];
-						  	$b_location = $row["b_location"];
-						   	$b_timeStart = $row["b_timeStart"];
-						    $b_timeEnd = $row["b_timeEnd"]; 
-					    }
-				}
-				?>
+         		
 	 		 <div class="row grids text-center">
-				 <div class="col-md-4">
+	 		 	<?php
+			    include("dbase.php");
+
+				$query ="SELECT business_id, b_name, b_location, b_timeStart, b_timeEnd from business_info"; 
+				$result = mysqli_query($conn,$query);
+				if (mysqli_num_rows($result) > 0){ 
+				// output data of each row
+				while($row = mysqli_fetch_assoc($result)){
+
+				$id = $row["business_id"];
+				$b_name = $row["b_name"];
+			  	$b_location = $row["b_location"];
+			   	$b_timeStart = $row["b_timeStart"];
+			    $b_timeEnd = $row["b_timeEnd"]; 
+
+			    
+			    ?>
+			    <div class="col-md-4">
 					<div class="view view-tenth">
-					      <a href="cust_orderFood.php">
+					      <a href="cust_orderFood.php?id=<?php echo $id; ?>">
 						   <div class="inner_content clearfix">
 							<div class="product_image">
-								<img src="images/arabcuisine1.jpg" class="img-responsive" alt=""/>
+								<img src="images/Asianfood.jpg" class="img-responsive" alt=""/>
 
 								<div class="label-product">
-                                <span class="new">From RM 5</span> </div>
+                                <span class="new">From RM 5++</span> </div>
 								<div class="mask" >
-			                        <h2>Delight Arabic Cuisine</h2>
-			                        <h3>UMP kebab BEST SELLER since 2001 with revenue of 1.5 million total lifetime orders</h3>
+
+			                        <h2> <?php echo $b_name; ?></h2>
+			                        
+			                        <h3> One of the UMP best food ordering. Don't miss the chance to eat good food</h3>
 			                        <div class="info"><i class="fa fa-search-plus"></i> </div>
 			                    </div>
 			                  	</div>
@@ -154,66 +177,32 @@ echo "<h3><center>Welcome ".$_SESSION['SESS_NAME']." , Login Successfully </cent
 				            </a> 
 				       </div>
 				       <div class="product_container wow bounceIn" data-wow-delay="0.4s">
-						  <h3><a href="cust_orderFood.php">Delight Arabic Cuisine</a></h3>
+				       
+						  <h3><a href="cust_orderFood.php?id=<?php echo $id?> <?php $b_location?>"> <?php echo $b_name; ?></a></h3>
 					      <div class="underheader-line"></div><br>
 					 
-					      <p>KK2 | KK4 | KK3</p>
-					      <p>610pm - 630pm</p>
+					      <p><?php echo $b_location; ?></p>
+					      <p><?php echo date('g:ia ', strtotime($b_timeStart)); ?> - <?php echo date('g:ia ', strtotime($b_timeEnd)); ?></p>
+
 				       </div>		
 		            </div>
-				    <div class="col-md-4">
-					  <div class="view view-tenth">
-					      <a href="cust_orderFood.php">
-						   <div class="inner_content clearfix">
-							 <div class="product_image">
-								<img src="images/Asianfood1.jpg" class="img-responsive" alt=""/>
-								<div class="label-product">
-                                <span class="new">From RM 10</span> </div>
-								<div class="mask">
-			                        <h2>Just Eat Ordering</h2>
-			                        <h3>What are you waiting for??!! Stop talking and JUST EAT!</h3>
-			                         <div class="info"><i class="fa fa-search-plus"></i> </div>
-			                    </div>
-			                  	</div>
-			                   </div>
-				            </a> 
-				       </div>
-				       <div class="product_container wow bounceIn" data-wow-delay="0.4s">
-						  <h3><a href="cust_orderFood.php">Just Eat Ordering</a></h3>
-					      <div class="underheader-line"></div> <br>
-					   
-					      <p>KK2 | KK4</p>
-					      <p>630pm - 700pm</p>
-				       </div>		
-		            </div>
-				    <div class="col-md-4">
-					   <div class="view view-tenth">
-					      <a href="cust_orderFood.php">
-						   <div class="inner_content clearfix">
-							<div class="product_image">
-								<img src="images/thaifood1.jpg" class="img-responsive" alt=""/>
-								<div class="label-product">
-                                <span class="new">From RM 4.99</span> </div>
-								<div class="mask">
-			                        <h2>Thai Food</h2>
-			                        <h3>SAWADIKAAP!! Our food is finely made by Thailand chefs</h3>
-			                         <div class="info"><i class="fa fa-search-plus"></i> </div>
-			                    </div>
-			                    </div>
-			                  </div>
-				            </a> 
-				       </div>
-				       <div class="product_container wow bounceIn" data-wow-delay="0.4s">
-						  <h3><a href="cust_orderFood.php">Thai Food</a></h3>
-					      <div class="underheader-line"></div> <br>
-					   
-					      <p>KK2 | KK4</p>
-					      <p>630pm - 700pm</p>
-				       </div>		
-		            </div>
-			 </div>	 
-          </div>
-   </div>
+
+			    <?php
+
+				}
+				}else{
+					echo "No results";
+				}
+				?>
+</div>
+</div>
+</div>
+</ul>
+</div>
+</div>
+</div>
+</div>
 </body>
 </html>
 
+	

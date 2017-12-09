@@ -64,7 +64,7 @@
     <div class="header_bottom">
               <div class="container">               
                 <div class="logo">
-                    <h1><a href="index.html">UMP DINNER<span>Ordering</span></a></h1>
+                    <h1><a href="bis_home.php">UMP DINNER<span>Ordering</span></a></h1>
                 </div>              
             <div class="navigation">    
             <div>
@@ -100,6 +100,7 @@
                 <div class="main_title">Welcome</div>
                 <div class="divider"></div>
                 </div> 
+                <p> <br> </p>
                 <?php
 /*
  Filename: login-successful.php
@@ -112,17 +113,14 @@ echo "<h3><center>Welcome ".$_SESSION['SESS_NAME']." , Login Successfully </cent
 
 ?>
 <div class="container" align="center">
-        <h1> Click here to <a href="bis_home.php">Homepage</a> </h1>
-        <p></p>
-        <h1> Click here to <a href="bis_addFood.php">Add Food</a> </h1>
-        
-        <a href="logout.php"> Logout Here</a>
+        <button class="btn btn-primary btn2 btn-normal btn-inline"> <a href="bis_home.php"> <h1> Homepage </h1></a> </button>
+        <p> <br> </p>
+        <button class="btn btn-primary btn2 btn-normal btn-inline"> <a href="bis_update_foodonsale.php"> <h1> Update Food </h1></a> </button>
+        <p> <br> </p>
+         <button class="btn btn-primary btn2 btn-normal btn-inline"> <a href="logout.php"><h1>Log Out </h1></a> </button>
+         <p> <br> </p>
     </div>
     </body>
 </html>
 
 
-
-<body>
-
-        

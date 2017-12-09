@@ -135,8 +135,6 @@ text-decoration: none;
 	box-shadow: 0px 1px 5px rgba(0, 0, 0, 0.47);
 }
 
-
-}
 .search_box {
 	background:#FFF;
 	border:1px solid #F0F0F0;
@@ -331,6 +329,8 @@ th, td {
 .logo a{
 	display:block;
 }
+
+
 #fw-wrapper {
 	overflow:visible;
 	margin:0 auto;

@@ -85,6 +85,12 @@ License URL: http://creativecommons.org/licenses/by/3.0/
     color: black;
 }
 
+#user {
+   		padding-top: 45px;
+   		padding-left: 250px;
+   		position: absolute;
+   	}
+
 </style>
 
 </head>
@@ -94,8 +100,20 @@ License URL: http://creativecommons.org/licenses/by/3.0/
  	    <div class="header_bottom">
 		 	  <div class="container">	 			
 				<div class="logo">
-					<h1><a href="index.html">UMP DINNER<span>Ordering</span></a></h1>
+					<h1><a href="bis_home.php">UMP DINNER<span>Ordering</span></a></h1>
 				</div>				
+				<div id="user">	
+				<?php
+					/*
+					 Filename: login-successful.php
+					 Purpose: To display protected web page if user is valid.
+					 Note: If you enter directly to this page, you will be checked by the authenticator, and then redirect to login-failed.html.
+					*/
+
+					include("authenticator.php");
+					echo "<h3>Welcome, Seller ".$_SESSION['SESS_NAME']." </h3>";
+					?>
+				</div>
 			<div class="navigation">	
 			<div>
               <label class="mobile_menu" for="mobile_menu">
@@ -103,12 +121,12 @@ License URL: http://creativecommons.org/licenses/by/3.0/
               </label>
               <input id="mobile_menu" type="checkbox">
 				<ul class="nav">
-              <li><a href="index.html">Home</a></li>                  
+              <li><a href="bis_home.php">Home</a></li>                  
                      
-              <li><a href="about.html">View Order</a></li>
+<!--               <li><a href="bis_view_cust.php">View Customer</a></li> -->
                   
 
-            <li><a href="index.html">Logout</a></li>
+            <li><a href="logout.php">Logout</a></li>
             
             <div class="clearfix"></div>
           </ul>
@@ -119,14 +137,6 @@ License URL: http://creativecommons.org/licenses/by/3.0/
    </div>	
   </div>
    <!-- Ends Header -->
-   <!-- <script>
-		document.getElementById("status_update").addEventListener("click", myFunction);
-
-		function myFunction() {
-				 document.getElementById("status_update").innerHTML = "Paid";
-				 document.getElementById("status_update").style.color = "green";
-		}
-	</script> -->
 
     <!------------ Start Content ---------------->
 
@@ -138,13 +148,12 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 			<div class="reservation_top">
             	<div class="view_cust" align="center">
 					<h2>Today's Customer List</h2>	
-					<h3>KK4</h3>
-
 					<table>
 						<tr>
 							<th>Bil</th>
-							<th>Name</th>
-							<th>Set</th>
+							<th>Customer Name</th>
+							<th>Food Name</th>
+							<th>Location</th>
 							<th>Quantity</th>
 							<th>Total</th>
 							<th>Status</th>
@@ -153,39 +162,49 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 							<?php
 							//set counter variable 
 							$counter = 1; 
-							while($row = mysqli_fetch_array($_POST)) 
-							  { 
-									echo "<td>" . $counter . "</td>"; 
-								    echo "<td>" . $row['name'] . "</td>"; 
-								    echo "<td>" . $row['set'] . "</td>"; 
-								    echo "<td>" . $row['quantity'] . "</td>"; 
-								    echo "<td>" . $row['total'] . "</td>";
-						   			echo "<td><button id=status_update>" . Unpaid . "</button></td>";
+						
+			    include("dbase.php");
+			    $b_name = ".$_SESSION['SESS_NAME']."
+
+
+				$query ="SELECT food_id, f_name, f_price, b_location FROM food_info, business_info WHERE 	food_id IN (SELECT food_fk FROM business_food_mapping WHERE business_fk IN (SELECT business_id FROM business_info WHERE b_name =  ))  "; 
+
+				$result = mysqli_query($conn,$query);
+				if (mysqli_num_rows($result) > 0){ 
+				// output data of each row
+				while($row = mysqli_fetch_assoc($result)){
+				$id = $row["food_id"];
+				$f_name = $row["f_name"];
+			 	$f_price = $row["f_price"];
+			  	$b_location = $row["b_location"];
+			  	$c_name = $row["c_name"];
+			  	$quantity = $row["quantity"];
+			    ?> 						
+			    <tr> 
+									<td><?php echo $counter; ?></td>
+								    <td><?php echo $c_name; ?></td>
+								    <td><?php echo $f_name; ?></td>
+								    <td><?php echo $b_location; ?></td>
+								    <td><?php echo $quantity; ?></td>
+								    <td><?php echo $Total; ?></td>
+								    <td><button id="status_update"> Unpaid </button></td>
 						 
 							
-							$counter++; //increment counter by 1 on every pass 
-							  } 
-							echo "</table>";
-							?>	
-						</tr>
+							<?php $counter++; ?>
 
-
-					</table>
-
-
-<!-- Example code
-	<?php
-//set counter variable 
-$counter = 1; 
-while($row = mysqli_fetch_array($_POST)) 
-  { 
-  echo "<tr>"; 
-  echo "<td>" . $counter . "</td>"; 
-  echo "<td>" . $row['name'] . "</td>"; 
-  echo "<td>" . $row['speech'] . "</td>"; 
-  echo "</tr>"; 
-  $counter++; //increment counter by 1 on every pass 
-  } 
-echo "</table>";
-?>
--->
+				</tr>	
+					<?php
+				}
+				}else{
+					echo "No results";
+				}
+				?>
+			
+			    
+					</tr>
+				</table>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

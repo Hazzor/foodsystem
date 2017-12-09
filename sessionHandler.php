@@ -42,7 +42,7 @@ mysqli_select_db($conn,"foodsystem") or die(mysqli_error());
 // to create a query to be executed in sql
 $matricnumber = $_POST['matricnumber'];
 $password = $_POST['password'];
-$query = "SELECT * FROM foodorder WHERE matricnumber = '$matricnumber' AND password = '$password'";
+$query = "SELECT * FROM business_info WHERE b_matricID = '$matricnumber' AND b_password = '$password'";
 
 // to run sql query in database
 $result = mysqli_query($conn,$query) or die('Error: ' . mysqli_error($conn));
@@ -55,8 +55,8 @@ if (isset($result))
         //Login Successful
         session_regenerate_id();
         $member = mysqli_fetch_assoc ($result);
-        $_SESSION ['SESS_MEMBER_ID'] = $member['id'];
-        $_SESSION ['SESS_NAME'] = $member['name'];
+        $_SESSION ['SESS_MEMBER_ID'] = $member['business_id'];
+        $_SESSION ['SESS_NAME'] = $member['b_name'];
         $_SESSION ['STATUS'] = true;
         session_write_close();
         header("location: login-successful.php");

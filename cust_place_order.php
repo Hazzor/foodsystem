@@ -4,7 +4,24 @@ Author URL: http://w3layouts.com
 License: Creative Commons Attribution 3.0 Unported
 License URL: http://creativecommons.org/licenses/by/3.0/
 -->
+<?php
 
+include("dbase.php");
+$foodid = $_GET['id'];
+
+$query = "SELECT f_name, f_photo, f_price FROM food_info WHERE food_id = '$foodid'";
+$result = mysqli_query($conn,$query) or die ("Could not order food");
+
+if (mysqli_num_rows($result) > 0){ 
+        // output data of each row
+        $row = mysqli_fetch_assoc($result);
+
+        $f_name = $row["f_name"];
+        $f_photo = $row["f_photo"];
+        $f_price = $row["f_price"];
+      }
+
+?>
 <!DOCTYPE HTML>
 <html>
 <head>
@@ -85,7 +102,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
       <div class="header_bottom">
         <div class="container">       
         <div class="logo">
-          <h1><a href="bis_home.php">UMP DINNER<span>Ordering</span></a></h1>
+          <h1><a href="index.php">UMP DINNER<span>Ordering</span></a></h1>
         </div>        
         <div id="user"> 
         <?php
@@ -96,7 +113,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
           */
 
           include("authenticator.php");
-          echo "<h3>Welcome, Seller ".$_SESSION['SESS_NAME']." </h3>";
+          echo "<h3>Welcome, ".$_SESSION['SESS_NAME']." </h3>";
           ?>
         </div>
       <div class="navigation">  
@@ -106,7 +123,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
               </label>
               <input id="mobile_menu" type="checkbox">
         <ul class="nav">
-              <li><a href="bis_home.php">Home</a></li>                  
+              <li><a href="index.php">Home</a></li>                  
             <li><a href="logout.php">Logout</a></li>
             
             <div class="clearfix"></div>
@@ -121,42 +138,49 @@ License URL: http://creativecommons.org/licenses/by/3.0/
     <!------------ Start Content ---------------->
         <div class="main">
           <div class="reservation_banner" style="margin-bottom:40px">
-            <div class="main_title">Sell food</div>
+            <div class="main_title">Place order</div>
             <div class="divider"></div>
          </div>
 
           <div class="container">
             <div class="sign-up-form">
-            <form method="POST" action="bis_addFoodscript.php" enctype="multipart/form-data">
+            <form method="POST" action="cust_place_orderscript.php" enctype="multipart/form-data">
               <div class="row" align="center">
                 <div class="col-md-2"></div>
               <div class="col-md-3">
-                <label class="control-label"><b>Add food image here:</b></label><br>
-                                  <input type="file" name="photo" onchange="loadFile(event)" accept="image/*">
-                                  <br><br>
-                            <img  id="output" width="300px"/>
-                              <script>
+                <label class="control-label"><b>Food image:</b></label><br>
+                            <img  src="<?php echo $f_photo ?>" width="300px"/>
+             <!--                  <script>
                                 var loadFile = function(event) {
                                   var output = document.getElementById('output');
                                     output.src = URL.createObjectURL(event.target.files[0]);
                                 };
-                              </script>
+                              </script> -->
               </div>
 
                    <div class="col-md-7" align="center">
-                                  
-  <div class="form-group" >
-                           <label for="foodname"><b>Food Name :</b></label>
-                          <input type="text" name="foodname" class="form-control " placeholder="e.g : Nasi Goreng">
-  </div>
-  <br>
-  <div class="form-group" >
-                           <label for="price"><b>Price (RM):</b></label>
-                           <input type="number" name="price" class="form-control " placeholder="e.g : 5">
-  </div>
-                          <br>
 
-                          <input type="submit" class="btn btn-primary" value="Sell Food">
+                          <h2><b><?php echo $f_name; ?></b></h2><br>
+                          <div class="form-group" >
+                             <label for="price"><b>Quantity :</b></label>
+                             <input type="number" style="width:200px" name="quantity" class="form-control " placeholder="e.g : 5" value="1" onchange="totalprice(this.value)" min="1" max="10">
+                             <input type="hidden" name="id" value="<?php echo $foodid; ?>">
+                          </div><br>
+
+                          <p style="font-size:20px" >Price : RM<?php echo $f_price; ?></p><br><hr>
+                          <p style="font-size:25px"><span style="color:red"><b>Total Price : RM <span id="totalprice"></span> </span></p>
+                          <script type="text/javascript">
+
+                             document.getElementById("totalprice").innerHTML = 1 * <?php echo $f_price; ?>;
+
+                            function totalprice(val) {
+                              document.getElementById("totalprice").innerHTML = val * <?php echo $f_price; ?>;
+                              // totalprice = val;
+                                // alert("The input value has changed. The new value is: " + val);
+                            }
+                          </script>
+                          <br>
+                          <a><input type="submit" class="btn btn-primary" value="Order Food"></a>
 
                     <div class="clearfix"></div>
                          </div>

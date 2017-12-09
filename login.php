@@ -166,8 +166,10 @@
 				<div class="login-form"> 
 					<div align="center">
 						<h1>Login </h1>
-						<button onclick="customerFunction()" class="btn btn-primary btn2 btn-normal btn-inline ">Customer</button>
-						<button onclick="sellerFunction()" class="btn btn-primary btn2 btn-normal btn-inline ">Seller</button>
+						<p><br></p>
+						<p> <button onclick="customerFunction()" class="btn btn-primary btn2 btn-normal btn-inline ">Customer</button> &nbsp
+
+						<button onclick="sellerFunction()" class="btn btn-primary btn2 btn-normal btn-inline ">&nbsp Seller &nbsp</button></p>
 					</div>
 
 					<script>

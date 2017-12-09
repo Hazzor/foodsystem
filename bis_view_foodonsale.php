@@ -83,6 +83,11 @@
 		width: 200px;
 		overflow: hidden;
 	}
+	#user {
+   		padding-top: 45px;
+   		padding-left: 250px;
+   		position: absolute;
+   	}
 </style>
 
 </head>
@@ -91,8 +96,20 @@
  	    <div class="header_bottom">
 		 	  <div class="container">	 			
 				<div class="logo">
-					<h1><a href="index.html">UMP DINNER<span>Ordering</span></a></h1>
-				</div>				
+					<h1><a href="bis_home.php">UMP DINNER<span>Ordering</span></a></h1>
+				</div>			
+				<div id="user"> 
+        <?php
+          /*
+           Filename: login-successful.php
+           Purpose: To display protected web page if user is valid.
+           Note: If you enter directly to this page, you will be checked by the authenticator, and then redirect to login-failed.html.
+          */
+
+          include("authenticator.php");
+          echo "<h3>Welcome, Seller ".$_SESSION['SESS_NAME']." </h3>";
+          ?>
+        </div>	
 			<div class="navigation">	
 			<div>
               <label class="mobile_menu" for="mobile_menu">
@@ -100,8 +117,8 @@
               </label>
               <input id="mobile_menu" type="checkbox">
 				<ul class="nav">
-              <li><a href="index.html">Home</a></li>                  
-            <li><a href="index.html">Logout</a></li>
+              <li><a href="bis_home.php">Home</a></li>                  
+            <li><a href="logout.php">Logout</a></li>
             
             <div class="clearfix"></div>
           </ul>
@@ -161,10 +178,7 @@
 					  					<td class="first"><p class="card-text">Price  </p></td>
 					  					<td>: <?php echo "RM ".$f_price; ?></td>
 					  				</tr>
-					  			</table>
-							    
-							    
-							    
+					  			</table>   
 							    
 							    <br>
 							    <div align="right">
@@ -182,29 +196,6 @@
 					echo "No results";
 				}
 				?>
-
-				<!-- <div class="card card-padding">
-					  <div class="card-block">
-					  	<div class="row">
-					  		<div class="col-sm-6">
-					  			<img src="images/arabfood2.jpg" width="100%">
-					 	 	</div>
-
-					  		<div class="col-sm-6" align="left">
-							    <h4 class="card-title">Nasi Arab</h4>
-							    <p class="card-text">Location : KK4</p>
-							    <p class="card-text">Distribution time : 6.30pm - 7.00pm</p>
-							    <p class="card-text">Price : RM 5</p>
-							    <br><br><br>
-							    <div align="right">
-								    <a href="#" class="btn btn-success"><b>Update</b></a>
-								    <a href="#" class="btn btn-danger"><b>Delete</b></a>
-							    </div>
-						    </div>
-
-				    </div>
-				  </div>
-				</div> -->
 
 			</div>
 		</div>

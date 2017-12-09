@@ -6,7 +6,7 @@
 
 //Start session
 session_start();
-$r=session_id();
+
 
 
 //Validation error flag
@@ -57,9 +57,10 @@ if (isset($result))
         //Login Successful
         session_regenerate_id();
         $member = mysqli_fetch_assoc ($result);
-        $_SESSION ['SESS_MEMBER_ID'] = $member['customer_id'];
+        $_SESSION ['SESS_CUSTOMER_ID'] = $member['customer_id'];
         $_SESSION ['SESS_NAME'] = $member['c_name'];
         $_SESSION ['STATUS'] = true;
+
         session_write_close();
         header("location: cust_login-successful.php");
         exit();
@@ -75,10 +76,5 @@ else
 {
     die("Query failed");    
 }
-
-/* now registering a session for an authenticated user */
-$_SESSION['c_name']=$username;
-echo "the session id id: ".$r;
-echo " and the session has been registered for: ".$_SESSION['username'];
 
 ?>

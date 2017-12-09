@@ -88,18 +88,32 @@
   }
 
 
+
   </style>
 </head>
 <body>
 
-  <h1>UMP DINNER  <span id="ordering">Ordering</span></h1><button onclick="location.href='login.php';" class="logout">Logout</button>
+  <h1>UMP DINNER  <span id="ordering">Ordering</span></h1><button onclick="location.href='logout.php';" class="logout">Logout</button>
 
   
   <br>
  <div class="container">
   <div class="row">
 
-  <h2>Welcome, Admin Akasha</h2>
+<div id="user"> 
+        <?php
+          /*
+           Filename: login-successful.php
+           Purpose: To display protected web page if user is valid.
+           Note: If you enter directly to this page, you will be checked by the authenticator, and then redirect to login-failed.html.
+          */
+
+          include("authenticator.php");
+          echo "<h2>Welcome, Seller ".$_SESSION['SESS_NAME']." </h2>";
+          ?>
+        </div>
+
+  
   <br>
   <div class="col-sm-4">
     <div class="card">

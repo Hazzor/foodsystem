@@ -80,7 +80,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
       <div class="header_bottom">
         <div class="container">       
         <div class="logo">
-          <h1><a href="index.html">UMP DINNER<span>Ordering</span></a></h1>
+          <h1><a href="bis_home.php">UMP DINNER<span>Ordering</span></a></h1>
         </div>        
       <div class="navigation">  
       <div>
@@ -89,7 +89,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
               </label>
               <input id="mobile_menu" type="checkbox">
         <ul class="nav">
-              <li><a href="index.html">Home</a></li>                  
+              <li><a href="bis_home.php">Home</a></li>                  
             <li><a href="logout.php">Logout</a></li>
             
             <div class="clearfix"></div>
@@ -110,7 +110,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 
           <div class="container">
             <div class="sign-up-form">
-            <form method="POST" action="bis_signupscript.php" enctype="multipart/form-data">
+            <form method="POST" action="bis_sign-upscript.php" enctype="multipart/form-data">
               <div class="row" align="center">
                 <div class="col-md-2"></div>
               <div class="col-md-3">
