@@ -1,10 +1,10 @@
 <?php
           include("dbase.php");
-          $id = $_GET['id'];
-        $query ="SELECT food_id, f_name, f_photo, f_price, b_location, b_timeStart, b_timeEnd FROM food_info, business_info WHERE food_id IN (SELECT food_fk FROM business_food_mapping WHERE business_fk IN (SELECT business_id FROM business_info WHERE b_name='just eat' AND food_id='$id')) "; 
+          $food_id = $_GET['id'];
+        $query ="SELECT food_id, f_name, f_photo, f_price, b_location, b_timeStart, b_timeEnd FROM food_info, business_info WHERE food_id IN (SELECT food_fk FROM business_food_mapping WHERE business_fk IN (SELECT business_id FROM business_info WHERE b_name='just eat' AND food_id='$food_id')) "; 
         $result = mysqli_query($conn,$query);
         $row = mysqli_fetch_assoc($result);
-        $id = $row["food_id"];
+        
         $f_name = $row["f_name"];
         $f_photo = $row["f_photo"];
         $f_price = $row["f_price"];
@@ -79,9 +79,36 @@
   
 <link rel="stylesheet" href="fonts/css/font-awesome.min.css">
 <style type="text/css">
+  .error {color: #FF0000;}
+  td{
+    padding:0px;
+    font-size: 17px;
+    padding-bottom: 5px;
+  }
+  .first{
+    font-weight: 600;
+  }
+  h4{
+    font-weight: bold;
+  }
+  .btn{
+    color:white;
+  }
 
+  #photo {
+    height: 200px; 
+    width: 200px;
+    overflow: hidden;
+  }
+
+  #user {
+      padding-top: 45px;
+      padding-left: 250px;
+      position: absolute;
+      
+    }
+    
 </style>
-
 </head>
 <body >
 
@@ -135,18 +162,10 @@
               <div class="col-md-3">
                 <label class="control-label"><b>Update food image here:</b></label><br>
                                   <input type="file" id="photo1" name="photo" onchange="loadFile(event)"  accept="image/*">
-                                  <input type="hidden" name="id" value="<?php echo $id; ?>">
+                                  <input type="hidden" name="food_id" value="<?php echo $food_id; ?>">
                                   <br><br>
                             <img src="<?php echo $f_photo; ?>" id="output" width="300px"/>
                               <script>
-
-                                function LoadValue() {
-                                  document.getElementById("photo1").value = <?php echo realpath($f_photo); ?>;
-                                  
-
-                                }
-                                window.onload = LoadValue;
-
 
                                 var loadFile = function(event) {
                                   var output = document.getElementById('output');
@@ -155,10 +174,11 @@
                                 };
                               </script>
               </div>
+              
 
                    <div class="col-md-7" align="center">
                                   
-  <div class="form-group" >
+  <div class="form-group">
                            <label for="foodname"><b>Food Name :</b></label>
                           <input type="text" name="foodname" class="form-control " value="<?php echo $f_name; ?>" placeholder="e.g : Nasi Goreng">
   </div>

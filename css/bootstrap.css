@@ -2280,10 +2280,58 @@ fieldset[disabled] .btn-danger.active {
   background-color: #d9534f;
   border-color: #d43f3a;
 }
+
+//delete customer
+.btn-deletecust .badge {
+  color: #fff;
+  background-color: #FA504B;
+}
+
+.btn-deletecust {
+  color: #fff;
+  background-color: #FA504B;
+  border-color: #DB3933;
+}
+.btn-deletecust:hover,
+.btn-deletecust:focus,
+.btn-deletecust:active,
+.btn-deletecust.active,
+.open .dropdown-toggle.btn-deletecust {
+  color: #fff;
+  background-color: #5BD22D;
+  border-color: #58B932;
+}
+.btn-deletecust:active,
+.btn-deletecust.active,
+.open .dropdown-toggle.btn-deletecust {
+  background-image: none;
+}
+.btn-deletecust.disabled,
+.btn-deletecust[disabled],
+fieldset[disabled] .btn-deletecust,
+.btn-deletecust.disabled:hover,
+.btn-deletecust[disabled]:hover,
+fieldset[disabled] .btn-deletecust:hover,
+.btn-deletecust.disabled:focus,
+.btn-deletecust[disabled]:focus,
+fieldset[disabled] .btn-deletecust:focus,
+.btn-deletecust.disabled:active,
+.btn-deletecust[disabled]:active,
+fieldset[disabled] .btn-deletecust:active,
+.btn-deletecust.disabled.active,
+.btn-deletecust[disabled].active,
+fieldset[disabled] .btn-deletecust.active {
+  background-color: #d9534f;
+  border-color: #d43f3a;
+}
 .btn-danger .badge {
   color: #d9534f;
   background-color: #fff;
 }
+
+
+
+
 .btn-link {
   font-weight: normal;
   color: #1B242F;

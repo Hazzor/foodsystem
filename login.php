@@ -63,8 +63,8 @@
 			padding:30px;
 			width:80%;
 			height:40%;
-			margin:20% auto;
-			height:70%;
+			margin:16% auto;
+			height:75%;
 			color:#353638;
 			background-color: white;
 		}

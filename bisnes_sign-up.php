@@ -104,7 +104,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
     <!------------ Start Content ---------------->
         <div class="main">
           <div class="reservation_banner" style="margin-bottom:40px">
-            <div class="main_title">Sell food</div>
+            <div class="main_title">Business Sign Up</div>
             <div class="divider"></div>
          </div>
 

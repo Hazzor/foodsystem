@@ -114,6 +114,7 @@ if (mysqli_num_rows($result) > 0){
 
           include("authenticator.php");
           echo "<h3>Welcome, ".$_SESSION['SESS_NAME']." </h3>";
+          $customer_id = $_SESSION['SESS_MEMBER_ID'];
           ?>
         </div>
       <div class="navigation">  

@@ -140,6 +140,7 @@
 	        <div class="container" align="center" >
 			<?php
 			    include("dbase.php");
+			    $business_id = $_SESSION['SESS_MEMBER_ID'];
 
 				// $query ="SELECT food_id, f_name, f_photo, f_price, b_location, b_timeStart, b_timeEnd FROM food_info, business_info WHERE food_id IN (SELECT food_fk FROM business_food_mapping WHERE business_fk IN (SELECT business_id FROM business_info WHERE business_id ='1')) ";
 

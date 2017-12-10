@@ -1,9 +1,10 @@
 /<?php
 
   include('dbase.php');
-  $id= $_POST['id'];
+  $food_id=$_POST['food_id'];
   $foodname=$_POST['foodname'];
   $price=$_POST['price'];
+
 
 $fileinfo=PATHINFO($_FILES['photo']['name']);
 
@@ -18,11 +19,13 @@ $fileinfo=PATHINFO($_FILES['photo']['name']);
  
   }
 
- $query = "UPDATE food_info SET f_name = '$foodname', f_price = '$price', f_photo = '$location' WHERE food_id='$id'";
+ $query = "UPDATE food_info SET f_name = '$foodname', f_price = '$price', f_photo = '$location' WHERE food_id='$food_id'";
   $result = mysqli_query($conn,$query) or die ("Could not execute query");
 
 if($result){
- echo "<script type= 'text/javascript'> window.location='bis_view_foodonsale.php'</script>";}
+ echo "<script type= 'text/javascript'> window.location='bis_view_foodonsale.php'</script>";
+  // echo $id;
+}
 
 
 

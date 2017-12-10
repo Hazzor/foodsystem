@@ -91,7 +91,23 @@ License URL: http://creativecommons.org/licenses/by/3.0/
    		position: absolute;
    	}
 
+   	.delete {
+   			color: #fff;
+		 	background-color: #FA504B;
+			border-color: #DB3933;
+			text-decoration: none;
+   	}
+   	.delete a{
+   		text-decoration: none;
+   		color: white;
+   	}
+   	.delete:hover {
+   		background-color: green;
+   	}
+
 </style>
+
+
 
 </head>
 
@@ -112,6 +128,8 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 
 					include("authenticator.php");
 					echo "<h3>Welcome, Seller ".$_SESSION['SESS_NAME']." </h3>";
+
+					$business_id = $_SESSION['SESS_MEMBER_ID'];
 					?>
 				</div>
 			<div class="navigation">	
@@ -153,7 +171,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 							<th>Bil</th>
 							<th>Customer Name</th>
 							<th>Food Name</th>
-							<th>Location</th>
+							<th>Food Price</th>
 							<th>Quantity</th>
 							<th>Total</th>
 							<th>Status</th>
@@ -164,35 +182,39 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 							$counter = 1; 
 						
 			    include("dbase.php");
-			    $b_name = ".$_SESSION['SESS_NAME']."
+			    
 
 
-				$query ="SELECT food_id, f_name, f_price, b_location FROM food_info, business_info WHERE 	food_id IN (SELECT food_fk FROM business_food_mapping WHERE business_fk IN (SELECT business_id FROM business_info WHERE b_name =  ))  "; 
+				$query ="SELECT food_id, f_name, f_photo, f_price,  c_name, quantity, customer_id FROM food_info, business_info, customer_info, customer_food_mapping, business_food_mapping WHERE  food_info.food_id = business_food_mapping.food_fk AND business_info.business_id=business_food_mapping.business_fk AND business_info.business_id='$business_id' AND customer_info.customer_id = customer_food_mapping.customer_fk AND customer_food_mapping.food_fk = food_info.food_id"; 
 
 				$result = mysqli_query($conn,$query);
-				if (mysqli_num_rows($result) > 0){ 
+				if (mysqli_num_rows($result) > 0){
+				$totalPrice = 0;
 				// output data of each row
 				while($row = mysqli_fetch_assoc($result)){
-				$id = $row["food_id"];
+				
+
+				$id = $row["customer_id"];
 				$f_name = $row["f_name"];
 			 	$f_price = $row["f_price"];
-			  	$b_location = $row["b_location"];
 			  	$c_name = $row["c_name"];
 			  	$quantity = $row["quantity"];
-			    ?> 						
+			  	$totalPrice = $f_price*$quantity;
+
+			    ?> 		
+			     <form method="POST" action="bis_delete_customerScript.php" enctype="multipart/form-data">
 			    <tr> 
 									<td><?php echo $counter; ?></td>
 								    <td><?php echo $c_name; ?></td>
 								    <td><?php echo $f_name; ?></td>
-								    <td><?php echo $b_location; ?></td>
+								    <td><?php echo $f_price; ?></td>
 								    <td><?php echo $quantity; ?></td>
-								    <td><?php echo $Total; ?></td>
-								    <td><button id="status_update"> Unpaid </button></td>
-						 
-							
-							<?php $counter++; ?>
+								    <td><b>RM <?php echo $totalPrice; ?></b></td>
+								    <td><button class="delete"><a href="bis_delete_customerScript.php?id=<?php echo $id; ?>"><b>Unpaid</b></a></button></td>
 
+							<?php $counter++; ?>
 				</tr>	
+			</form>
 					<?php
 				}
 				}else{
