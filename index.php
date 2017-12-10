@@ -70,6 +70,12 @@ License URL: http://creativecommons.org/licenses/by/3.0/
    		padding-left: 250px;
    		position: absolute;
    	}
+
+   	#photo {
+		height: 250px; 
+		width: 380px;
+		overflow: hidden;
+	}
    </style>
   
 <link rel="stylesheet" href="fonts/css/font-awesome.min.css">
@@ -121,11 +127,6 @@ License URL: http://creativecommons.org/licenses/by/3.0/
      <div class="clearfix"></div>		   
     </div>
    </div>	
-<!--    <div id="slider">
-	  <div><img src="images/carousel1.jpg" class="img-responsive" alt="img01"/></div>
-	  <div><img src="images/carousel2.jpg" class="img-responsive" alt="img02"/></div>
-	  <div><img src="images/carousel3.jpg" class="img-responsive" alt="img03"/></div>
-	</div> -->
   </div>
    <!-- Ends Header -->
 
@@ -142,13 +143,14 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 	 		 	<?php
 			    include("dbase.php");
 
-				$query ="SELECT business_id, b_name, b_location, b_timeStart, b_timeEnd from business_info"; 
+				$query ="SELECT business_id, b_name, b_location, b_timeStart, b_timeEnd, b_photo from business_info"; 
 				$result = mysqli_query($conn,$query);
 				if (mysqli_num_rows($result) > 0){ 
 				// output data of each row
 				while($row = mysqli_fetch_assoc($result)){
 
 				$id = $row["business_id"];
+				$b_photo = $row["b_photo"];
 				$b_name = $row["b_name"];
 			  	$b_location = $row["b_location"];
 			   	$b_timeStart = $row["b_timeStart"];
@@ -156,12 +158,13 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 
 			    
 			    ?>
+
 			    <div class="col-md-4">
 					<div class="view view-tenth">
 					      <a href="cust_orderFood.php?id=<?php echo $id; ?>">
 						   <div class="inner_content clearfix">
-							<div class="product_image">
-								<img src="images/Asianfood.jpg" class="img-responsive" alt=""/>
+							<div class="product_image" id="photo">
+								<img src="<?php echo $b_photo; ?>" style="width:100%;" class="img-responsive" alt=""/>
 
 								<div class="label-product">
                                 <span class="new">From RM 5++</span> </div>

@@ -2283,7 +2283,7 @@ fieldset[disabled] .btn-danger.active {
 
 //delete customer
 .btn-deletecust .badge {
-  color: #fff;
+  color: #FFF;
   background-color: #FA504B;
 }
 

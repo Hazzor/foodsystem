@@ -7,6 +7,7 @@
 	<link href="css/style.css" rel='stylesheet' type='text/css' />
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 
+
   
 
 <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
@@ -14,6 +15,7 @@
 <link href='http://fonts.googleapis.com/css?family=Open+Sans:300,400,500,600,700,800,900' rel='stylesheet' type='text/css'>
 <link href='http://fonts.googleapis.com/css?family=Open+Sans+Condensed:300:700' rel='stylesheet' type='text/css'>
 <script src="js/jquery.min.js" type="text/javascript"></script>
+<script src="js/bootstrap.min.js" type="text/javascript"></script>
 <script src="js/modernizr.custom.js" type="text/javascript"></script>
 <script src="js/jquery.openCarousel.js" type="text/javascript"></script>
 <script src="js/fwslider.js" type="text/javascript"></script>
@@ -132,6 +134,13 @@
 </head>
 <body>
 <div class="container">
+	  
+
+
+<!-- <script type="text/javascript">
+	$(".alert").alert();
+</script> -->
+
 	<div id="splitlayout" class="splitlayout">
 
 		<div class="intro">
@@ -161,8 +170,31 @@
                     unset($_SESSION['ERRMSG_ARR']);
                 }  
             ?>
+
+
             
-			<div class="side side-right">
+			<div class="side side-right" >
+
+				<div class="alert alert-success alert-dismissible fade show" role="alert" id="success_alert" style="margin-bottom:-50px; visibility :hidden">
+			 	<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+			    <span aria-hidden="true">&times;</span>
+			 	</button>
+			 	<strong>Sign Up successfull!</strong> You can login now!! Enjoy!!
+			</div>
+
+
+			<?php
+
+				if(isset($_GET['status'])) {
+					// echo "<script type='text/javascript'> $('.alert').alert() </script>";
+
+					echo "<script type='text/javascript'> 
+					document.getElementById('success_alert').style.visibility = 'visible'
+					</script>";
+				}
+				else  {
+				}
+				?>
 				<div class="login-form"> 
 					<div align="center">
 						<h1>Login </h1>

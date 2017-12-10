@@ -115,7 +115,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                 <div class="col-md-2"></div>
               <div class="col-md-3">
                 <label class="control-label"><b>Add business profile image here:</b></label><br>
-                                  <input type="file" name="photo" onchange="loadFile(event)" accept="image/*">
+                                  <input type="file" name="photo" onchange="loadFile(event)" accept="image/*" required>
                                   <br><br>
                             <img  id="output" width="300px"/>
                               <script>
@@ -127,29 +127,29 @@ License URL: http://creativecommons.org/licenses/by/3.0/
               </div>
 
                    <div class="col-md-7" align="center">
-                    <form action="sign-up.html" method="post">
+                    <form action="bis_sign-upscript.php" method="post">
                                   
                       <div class="form-group" >
-                        <label for="foodname"><b>Business Name :</b></label>
-                        <input type="text" name="foodname" class="form-control " placeholder="e.g : Just Eat Dinner Ordering">
+                        <label for="bisnes_name"><b>Business Name :</b></label>
+                        <input type="text" name="bisnes_name" class="form-control " placeholder="e.g : Just Eat Dinner Ordering" required>
                       </div><br>
 
                       <div class="form-group" >
                         <label for="sellermatric"><b>Seller matric number :</b></label>
-                        <input type="text" name="sellermatric" class="form-control " placeholder="e.g : CC15249">
+                        <input type="text" name="sellermatric" class="form-control " placeholder="e.g : CC15249" required>
                       </div><br>
 
                       <div class="form-group" >
                         <label for="password"><b>Password :</b></label>
-                        <input type="password" name="password" class="form-control " placeholder="Must be more than 5 characters">
+                        <input type="password" name="password" class="form-control " placeholder="Must be more than 5 characters" required>
                       </div><br>
 
                       <div class="form-group" >
                         <label for="hpNum"><b>Mobile number :</b></label>
-                        <input type="number" name="hpNum" class="form-control " placeholder="e.g : 013-8299365">
+                        <input type="number" name="hpNum" class="form-control " placeholder="e.g : 013-8299365" required>
                       </div><br>
 
-                      <select class="sign-up-form select" name="location">
+                      <select class="sign-up-form select" name="location" required>
                         <option value="" disabled selected>Location of food distribution ?</option>
                         <option value="KK1">KK1</option>
                         <option value="KK2">KK2</option>
@@ -159,7 +159,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 
                       <div class="form-group" >
                         <label for="start_time"><b>Distribution time :</b></label>
-                        <input style="width:250px" type="time" class="form-control" value = "18:00" name="start_time"> to <input style="width:250px" type="time" class="form-control"  value = "19:00" name="end_time">
+                        <input style="width:250px" type="time" class="form-control" value = "18:00" name="start_time" required> to <input style="width:250px" type="time" class="form-control"  value = "19:00" name="end_time" required>
                       </div><br>
 
 <script type="text/javascript">

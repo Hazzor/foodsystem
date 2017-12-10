@@ -70,14 +70,18 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 .view_cust table, th, td {
     border: 0.1px solid black;
     border-collapse: collapse;
-    padding: 1.2em;
-    margin: 2em 0;
-    text-align: justify;
-    width: 70%;
+    text-align: center;
+    
+}
+
+.view_cust th,td { width: 5em; overflow: hidden; }
+.view_cust table { width : 60%;text-overflow: ellipsis; white-space:nowrap;  }
+#status {
+	width: 120px;
 }
 
 .view_cust th, td{
-	padding: 10px;
+	padding: 0.5em 1em;
 }
 
 .view_cust th{
@@ -96,6 +100,8 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 		 	background-color: #FA504B;
 			border-color: #DB3933;
 			text-decoration: none;
+			border-width: 0.1px;
+			padding: 0.2em 0.5em;
    	}
    	.delete a{
    		text-decoration: none;
@@ -103,6 +109,8 @@ License URL: http://creativecommons.org/licenses/by/3.0/
    	}
    	.delete:hover {
    		background-color: green;
+   		border-color: green;
+   		border-width: 0.1px;
    	}
 
 </style>
@@ -166,6 +174,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 			<div class="reservation_top">
             	<div class="view_cust" align="center">
 					<h2>Today's Customer List</h2>	
+					<p><br></p>
 					<table>
 						<tr>
 							<th>Bil</th>
@@ -182,10 +191,10 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 							$counter = 1; 
 						
 			    include("dbase.php");
+			    $today = date("d-m-Y", time());
 			    
 
-
-				$query ="SELECT food_id, f_name, f_photo, f_price,  c_name, quantity, customer_id FROM food_info, business_info, customer_info, customer_food_mapping, business_food_mapping WHERE  food_info.food_id = business_food_mapping.food_fk AND business_info.business_id=business_food_mapping.business_fk AND business_info.business_id='$business_id' AND customer_info.customer_id = customer_food_mapping.customer_fk AND customer_food_mapping.food_fk = food_info.food_id"; 
+				$query ="SELECT food_id, f_name, f_photo, f_price,  c_name, quantity, customer_id, order_id, tarikh FROM food_info, business_info, customer_info, customer_food_mapping, business_food_mapping WHERE  food_info.food_id = business_food_mapping.food_fk AND business_info.business_id=business_food_mapping.business_fk AND business_info.business_id='$business_id' AND customer_info.customer_id = customer_food_mapping.customer_fk AND customer_food_mapping.food_fk = food_info.food_id AND customer_food_mapping.tarikh = '$today'"; 
 
 				$result = mysqli_query($conn,$query);
 				if (mysqli_num_rows($result) > 0){
@@ -194,23 +203,33 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 				while($row = mysqli_fetch_assoc($result)){
 				
 
-				$id = $row["customer_id"];
+				$id = $row["order_id"];
 				$f_name = $row["f_name"];
 			 	$f_price = $row["f_price"];
 			  	$c_name = $row["c_name"];
 			  	$quantity = $row["quantity"];
+			  	$order_id = $row["order_id"];
 			  	$totalPrice = $f_price*$quantity;
 
 			    ?> 		
 			     <form method="POST" action="bis_delete_customerScript.php" enctype="multipart/form-data">
 			    <tr> 
-									<td><?php echo $counter; ?></td>
+			    					<div id="bil">
+										<td><?php echo $counter; ?></td>
+									</div>
 								    <td><?php echo $c_name; ?></td>
 								    <td><?php echo $f_name; ?></td>
-								    <td><?php echo $f_price; ?></td>
+								    <td>RM <?php echo $f_price; ?></td>
 								    <td><?php echo $quantity; ?></td>
 								    <td><b>RM <?php echo $totalPrice; ?></b></td>
-								    <td><button class="delete"><a href="bis_delete_customerScript.php?id=<?php echo $id; ?>"><b>Unpaid</b></a></button></td>
+								    <td id="status"><button class="delete" onclick="deletefunc()"><a href="bis_delete_customerScript.php?id=<?php echo $id; ?>">Unpaid</a></button></td>
+
+								    <script>
+										function deletefunc() 
+										{
+										    confirm("Are you sure you want to remove the customer?");
+										}
+									</script>
 
 							<?php $counter++; ?>
 				</tr>	
